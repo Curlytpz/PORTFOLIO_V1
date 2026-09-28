@@ -1,0 +1,698 @@
+/* =========================================================
+   Variables
+   ========================================================= */
+:root {
+  /* Colors */
+  --bg:           #faf9f7;
+  --bg-hover:     #f3f1ec;
+  --text:         #1a1a1a;
+  --text-muted:   #6b6b6b;
+  --text-faint:   #9a9a9a;
+  --border:       #e6e4e0;
+  --border-strong:#d6d3cd;
+  --accent:       #2f4858;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+               Consolas, monospace;
+
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+
+  /* Layout */
+  --content-width: 1080px;
+  --gutter: 1.5rem;
+
+  /* Motion */
+  --transition: 160ms ease;
+}
+
+/* =========================================================
+   Reset
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition), opacity var(--transition);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0 0 var(--space-3);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Focus states — accessible and visible */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* =========================================================
+   Layout
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--space-4);
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+.site-header {
+  padding: var(--space-4) 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+.site-nav .nav-external {
+  color: var(--text-faint);
+}
+
+/* =========================================================
+   Intro
+   ========================================================= */
+.intro {
+  padding: var(--space-7) var(--gutter) var(--space-6);
+}
+
+.intro h1 {
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+  max-width: 20ch;
+}
+
+.intro-support {
+  color: var(--text-muted);
+  max-width: 52ch;
+  margin-bottom: var(--space-4);
+}
+
+.intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-size: 0.95rem;
+}
+
+.intro-links a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.intro-links a:hover {
+  border-bottom-color: var(--text);
+}
+
+.intro-links .external {
+  color: var(--text-muted);
+}
+
+.intro-links .external:hover {
+  color: var(--text);
+}
+
+/* Arrow nudge — used everywhere arrows appear */
+.arrow {
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+a:hover .arrow {
+  transform: translate(4px, 0);
+}
+
+a.external:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================================
+   Work
+   ========================================================= */
+.work {
+  padding: var(--space-6) var(--gutter);
+}
+
+.project {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-5) 0;
+  transition: background var(--transition);
+}
+
+.project:hover {
+  background: var(--bg-hover);
+}
+
+/* Extend the hover background slightly beyond text edges */
+.project {
+  margin: 0 calc(var(--gutter) * -0.5);
+  padding-left: calc(var(--gutter) * 0.5);
+  padding-right: calc(var(--gutter) * 0.5);
+}
+
+.project-meta-top {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  margin-bottom: var(--space-4);
+}
+
+.project-title {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-1);
+}
+
+.project-title a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.project-title a:hover {
+  border-bottom-color: var(--text);
+}
+
+.project-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-3);
+}
+
+.project-description {
+  max-width: 62ch;
+  color: var(--text);
+  margin-bottom: var(--space-5);
+}
+
+.project-meta-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border-strong);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.project-link {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.project-link:hover {
+  border-bottom-color: var(--text);
+}
+
+/* =========================================================
+   About
+   ========================================================= */
+.about {
+  padding: var(--space-6) var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.about p {
+  max-width: 62ch;
+}
+
+/* =========================================================
+   Skills / Learning
+   ========================================================= */
+.learning {
+  padding: var(--space-6) var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.plain-list {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.plain-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.plain-list li:last-child {
+  border-bottom: none;
+}
+
+/* =========================================================
+   Contact
+   ========================================================= */
+.contact {
+  padding: var(--space-6) var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.contact-text {
+  max-width: 52ch;
+  margin-bottom: var(--space-4);
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-size: 0.95rem;
+}
+
+.contact-links a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.contact-links a:hover {
+  border-bottom-color: var(--text);
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-6);
+  padding: var(--space-4) 0 var(--space-6);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-note {
+  color: var(--text-faint);
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+/* =========================================================
+   Case Study
+   ========================================================= */
+.case-header {
+  padding: var(--space-6) var(--gutter) var(--space-5);
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.case-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.case-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-3);
+}
+
+.case-meta {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.case-section {
+  padding: var(--space-5) var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.case-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-3);
+}
+
+.case-section h2 {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+}
+
+.case-section p {
+  max-width: 62ch;
+}
+
+/* ---------- Workflow diagram ---------- */
+.workflow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.workflow-step {
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  min-width: 260px;
+  background: transparent;
+}
+
+.workflow-arrow {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  padding-left: 16px;
+}
+
+/* ---------- Media placeholders ---------- */
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.placeholder {
+  border: 1px dashed var(--border-strong);
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Technology list ---------- */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.tech-list span {
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 720px) {
+  :root {
+    --gutter: 1.25rem;
+    --space-7: 4rem;
+    --space-6: 3rem;
+    --space-5: 2.25rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .site-nav {
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .project {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .project-meta-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .learning-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .placeholder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  a:hover .arrow {
+    transform: none;
+  }
+}
+
+/* Skills / Learning */
+.learning { /* unchanged */ }
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+/* Third column wraps to a new row at desktop widths,
+   stacking cleanly on mobile. Add this rule: */
+.learning-grid > div:nth-child(3) {
+  grid-column: 1 / -1;
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+/* "Currently Learning" note — subtle, inline, muted */
+.label-note {
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  text-transform: none;
+}
+
+/* Full Stack items are visually quieter than the others */
+.plain-list--learning li {
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   Tech Stack (02 — Tech Stack)
+   ========================================================= */
+
+.tech-stack {
+  padding: var(--space-6) var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.tech-group {
+  margin-top: var(--space-5);
+}
+
+.tech-group:first-of-type {
+  margin-top: var(--space-3);
+}
+
+.tech-group-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 var(--space-2);
+}
+
+/* Inline "— Currently Learning" note next to the Full Stack label */
+.tech-group-note {
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+/* Pill row */
+.tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-pills li {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+}
+
+/* Full Stack items are visually quieter — still pills,
+   same size and shape, just muted text. */
+.tech-pills--learning li {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
