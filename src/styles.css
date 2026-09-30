@@ -4619,3 +4619,43 @@ body {
 .contact-drawer__submit:disabled {
   cursor: not-allowed;
 }
+/* Keep the music panel attached to its mobile utility tab. */
+@media (max-width: 1180px) {
+  .music-player {
+    position: fixed;
+    top: 32px;
+    right: 24px;
+    z-index: 11;
+    width: min(360px, calc(100vw - 2rem));
+    max-height: calc(100dvh - 64px);
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--bg);
+    transform: none;
+  }
+
+  .music-player.is-hidden {
+    transform: translateX(14px);
+  }
+
+  .music-player__tab {
+    right: 24px;
+    z-index: 12;
+  }
+}
+
+@media (max-width: 600px) {
+  .music-player__tab {
+    top: 1rem;
+    right: var(--gutter);
+    transform: none;
+  }
+
+  .music-player {
+    top: 1rem;
+    right: var(--gutter);
+    width: min(360px, calc(100vw - (var(--gutter) * 2)));
+    max-height: calc(100dvh - 2rem);
+  }
+}
