@@ -1,20 +1,25 @@
-// ProjectItem renders ONE project entry.
-// It receives the project as a "prop" — a piece of data
-// passed in from the parent (Projects).
-
 import { Link } from "react-router-dom";
 
 export default function ProjectItem({ project }) {
+  const statuses = Array.isArray(project.status)
+    ? project.status
+    : project.status
+      ? [project.status]
+      : [];
+
   return (
-    <article className="project">
+    <article className="project" aria-labelledby={`project-${project.id}`}>
       <div className="project-meta-top">
         <span className="project-number">{project.number}</span>
         <span className="project-year">{project.year}</span>
       </div>
 
-      <h3 className="project-title">
-        {/* Link to the case-study route */}
-        <Link to={project.link}>{project.title}</Link>
+      <h3 className="project-title" id={`project-${project.id}`}>
+        {project.link ? (
+          <Link to={project.link}>{project.title}</Link>
+        ) : (
+          project.title
+        )}
       </h3>
 
       <p className="project-subtitle">{project.subtitle}</p>
@@ -22,7 +27,6 @@ export default function ProjectItem({ project }) {
 
       <div className="project-meta-bottom">
         <div className="project-tags">
-          {/* Join categories with a middle-dot separator */}
           {project.categories.map((category, index) => (
             <span key={category}>
               {category}
@@ -34,10 +38,16 @@ export default function ProjectItem({ project }) {
         </div>
 
         <div className="project-status">
-          <span className="status-badge">{project.status}</span>
-          <Link to={project.link} className="project-link">
-            View project <span className="arrow">→</span>
-          </Link>
+          <div className="project-status-list" aria-label="Project status">
+            {statuses.map((status) => (
+              <span className="status-badge" key={status}>{status}</span>
+            ))}
+          </div>
+          {project.link ? (
+            <Link to={project.link} className="project-link">
+              View project <span className="arrow">→</span>
+            </Link>
+          ) : null}
         </div>
       </div>
     </article>
