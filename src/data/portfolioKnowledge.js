@@ -103,7 +103,7 @@ const portfolioKnowledge = {
   games:
     "The Playground includes Stack, an interactive JavaScript browser experiment where you place each moving block as precisely as possible.",
   resume:
-    "My resume is not currently available as a downloadable document in the portfolio. You can use the Message feature to ask for more information about my background.",
+    "My CV summarizes my Computer Engineering education, web development and IT support skills, academic thesis work, certifications, and independent projects.",
 };
 
 const list = (items) => items.join(", ");
@@ -206,7 +206,7 @@ export const chatbotIntents = [
   },
   {
     id: "resume",
-    keywords: ["resume", "cv", "curriculum", "vitae"],
+    keywords: ["resume", "cv", "curriculum", "vitae", "view my cv", "show me your cv", "see your resume", "qualifications"],
     answer: portfolioKnowledge.resume,
   },
 ];

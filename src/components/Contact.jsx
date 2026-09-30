@@ -267,6 +267,9 @@ useEffect(() => {
           <a href="https://www.linkedin.com/in/kris-santos-21b134280" className="external" target="_blank" rel="noopener noreferrer">
             LinkedIn <span className="arrow">↗</span>
           </a>
+          <a href="/assets/Kris_Benedict_Delos_Santos_CV_2026_Final.pdf" className="external contact-cv-link" target="_blank" rel="noopener noreferrer">
+            VIEW MY CV <span className="arrow">↗</span>
+          </a>
         </p>
         <button className="contact-inline-trigger" type="button" onClick={openDrawer}>
           SEND ME A MESSAGE <span className="arrow">→</span>

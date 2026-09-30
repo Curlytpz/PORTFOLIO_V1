@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 export default function Header() {
   const location = useLocation();
@@ -53,6 +54,10 @@ export default function Header() {
           <Link className={active("experience")} to="/experience">Experience</Link>
           <Link className={active("playground")} to="/playground">Playground</Link>
         </nav>
+
+        <div className="mobile-theme-control">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

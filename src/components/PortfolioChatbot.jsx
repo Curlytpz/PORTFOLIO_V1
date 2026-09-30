@@ -9,7 +9,7 @@ function normalize(value) {
 
 function findAnswer(question) {
   const normalized = normalize(question);
-  if (!normalized) return fallbackAnswer;
+  if (!normalized) return { text: fallbackAnswer, action: null };
 
   const ranked = chatbotIntents
     .map((intent) => {
@@ -20,7 +20,11 @@ function findAnswer(question) {
     })
     .sort((first, second) => second.score - first.score);
 
-  return ranked[0]?.score ? ranked[0].intent.answer : fallbackAnswer;
+  const match = ranked[0]?.score ? ranked[0].intent : null;
+  return {
+    text: match?.answer || fallbackAnswer,
+    action: match && ["resume", "experience"].includes(match.id) ? "resume" : null,
+  };
 }
 
 export default function PortfolioChatbot() {
@@ -75,7 +79,12 @@ export default function PortfolioChatbot() {
     responseTimerRef.current = window.setTimeout(() => {
       setMessages((current) => [
         ...current,
-        { id: `${timestamp}-answer`, role: "assistant", text: answer },
+        {
+          id: `${timestamp}-answer`,
+          role: "assistant",
+          text: answer.text,
+          action: answer.action,
+        },
       ]);
       setIsTyping(false);
       responseTimerRef.current = null;
@@ -111,6 +120,16 @@ export default function PortfolioChatbot() {
               key={message.id}
             >
               {message.text}
+              {message.action === "resume" ? (
+                <a
+                  className="portfolio-chat__cv-action"
+                  href="/assets/Kris_Benedict_Delos_Santos_CV_2026_Final.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VIEW CV <span className="arrow">↗</span>
+                </a>
+              ) : null}
             </p>
           ))}
           {isTyping ? (
