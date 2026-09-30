@@ -4474,9 +4474,12 @@ body {
 }
 
 .contact-drawer__field textarea {
+  height: 12rem;
   min-height: 12rem;
+  max-height: 12rem;
   padding: 0.7rem 0.75rem;
-  resize: vertical;
+  overflow-y: auto;
+  resize: none;
 }
 
 .contact-drawer__field input::placeholder,
@@ -4570,7 +4573,9 @@ body {
   }
 
   .contact-drawer__field textarea {
+    height: 10rem;
     min-height: 10rem;
+    max-height: 10rem;
   }
 }
 
@@ -4585,4 +4590,32 @@ body {
   .contact-drawer__submit {
     transition: none;
   }
+}
+.contact-turnstile {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text-muted);
+}
+
+.contact-turnstile .cf-turnstile {
+  width: 100%;
+  max-width: 100%;
+  min-height: 65px;
+  overflow: hidden;
+}
+
+.contact-turnstile iframe {
+  max-width: 100%;
+}
+
+.contact-turnstile__message {
+  margin: 0.45rem 0 0;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.contact-drawer__submit:disabled {
+  cursor: not-allowed;
 }

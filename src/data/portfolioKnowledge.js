@@ -92,8 +92,12 @@ const portfolioKnowledge = {
     "My current experience comes from the Sea-It-Solved academic thesis and independent web development projects. I describe these as academic and personal work rather than professional employment.",
   certifications:
     "My portfolio lists CCNA: Switching, Routing, and Wireless Essentials, completed through Cisco Networking Academy on June 17, 2025, and IT Essentials: PC Hardware and Software, completed on April 11, 2024. Both are Cisco Networking Academy credentials offered through Holy Angel University’s School of Engineering and Architecture. I do not claim to be CCNA Certified unless a credential says so.",
+  favoriteFoods:
+    "My favorite foods are adobo and sisig.",
+  hobbies:
+    "My hobbies include playing games, jogging or running, basketball, and pickleball.",
   interests:
-    "My interests include gaming, travel, motorcycle rides, music, design, photography, pickleball, and jogging or walking. I was also part of a Valorant championship team or event within the School of Engineering and Architecture in 2025.",
+    "My interests include gaming, music, design, and photography. I was also part of a Valorant championship team or event within the School of Engineering and Architecture in 2025.",
   contact:
     "You can contact me at krisbenedict2delossantos@gmail.com, visit github.com/Curlytpz, connect at linkedin.com/in/kris-santos-21b134280, or use the portfolio’s Message feature.",
   games:
@@ -176,8 +180,18 @@ export const chatbotIntents = [
     answer: portfolioKnowledge.certifications,
   },
   {
+    id: "food",
+    keywords: ["favorite food", "favourite food", "food", "foods", "eat", "eats"],
+    answer: portfolioKnowledge.favoriteFoods,
+  },
+  {
+    id: "hobbies",
+    keywords: ["hobby", "hobbies", "free time", "pastime", "pastimes", "gaming", "games", "basketball", "pickleball", "jogging", "running"],
+    answer: portfolioKnowledge.hobbies,
+  },
+  {
     id: "interests",
-    keywords: ["interest", "interests", "hobbies", "gaming", "travel", "motorcycle", "music", "photography", "pickleball", "jogging", "valorant"],
+    keywords: ["interest", "interests", "music", "photography", "valorant"],
     answer: portfolioKnowledge.interests,
   },
   {
@@ -198,6 +212,6 @@ export const chatbotIntents = [
 ];
 
 export const fallbackAnswer =
-  "I’m not sure about that, and I don’t want to guess. Try asking about my education, projects, skills, thesis, IT support, certifications, interests, or contact information.";
+  "I’m not sure about that, and I don’t want to guess. Try asking about my education, projects, skills, thesis, IT support, certifications, interests, hobbies, favorite food, or contact information.";
 
 export default portfolioKnowledge;

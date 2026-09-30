@@ -34,6 +34,12 @@ export default function Contact() {
   const closeButtonRef = useRef(null);
   const drawerRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const turnstileContainerRef = useRef(null);
+  const turnstileWidgetIdRef = useRef(null);
+  const turnstileTokenRef = useRef("");
+  const turnstileSiteKey = (import.meta.env.VITE_TURNSTILE_SITE_KEY || "").trim();
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileState, setTurnstileState] = useState("loading");
 
   const closeDrawer = () => {
     if (status === "loading") return;
@@ -98,6 +104,74 @@ export default function Contact() {
     };
   }, [isMounted, isOpen]);
 
+useEffect(() => {
+    if (!isMounted) return undefined;
+
+    turnstileTokenRef.current = "";
+    setTurnstileToken("");
+    if (!turnstileSiteKey) {
+      setTurnstileState("missing");
+      return undefined;
+    }
+
+    let disposed = false;
+    let script = document.querySelector('script[data-turnstile-script="true"]');
+
+    const renderWidget = () => {
+      if (disposed || !window.turnstile || !turnstileContainerRef.current) return;
+      try {
+        const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+        turnstileWidgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
+          sitekey: turnstileSiteKey,
+          theme,
+          size: "flexible",
+          callback: (token) => {
+            turnstileTokenRef.current = token;
+            setTurnstileToken(token);
+            setTurnstileState("ready");
+          },
+          "expired-callback": () => {
+            turnstileTokenRef.current = "";
+            setTurnstileToken("");
+            setTurnstileState("expired");
+          },
+          "error-callback": () => {
+            turnstileTokenRef.current = "";
+            setTurnstileToken("");
+            setTurnstileState("error");
+          },
+        });
+        setTurnstileState("ready");
+      } catch {
+        setTurnstileState("error");
+      }
+    };
+
+    const handleScriptLoad = () => renderWidget();
+    if (window.turnstile) {
+      renderWidget();
+    } else {
+      if (!script) {
+        script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.async = true;
+        script.defer = true;
+        script.dataset.turnstileScript = "true";
+        document.head.appendChild(script);
+      }
+      script.addEventListener("load", handleScriptLoad);
+      script.addEventListener("error", () => setTurnstileState("error"), { once: true });
+    }
+
+    return () => {
+      disposed = true;
+      script?.removeEventListener("load", handleScriptLoad);
+      if (turnstileWidgetIdRef.current !== null && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+    };
+  }, [isMounted, turnstileSiteKey]);
   const resetFeedback = () => {
     if (status === "success" || status === "error") {
       setStatus("idle");
@@ -135,6 +209,18 @@ export default function Contact() {
       return;
     }
 
+    if (!turnstileSiteKey) {
+      setStatus("error");
+      setFeedback("Turnstile is not configured in this environment yet.");
+      return;
+    }
+
+    if (!turnstileTokenRef.current) {
+      setStatus("error");
+      setFeedback("Please complete the verification before sending your message.");
+      return;
+    }
+
     setStatus("loading");
     setFeedback("");
 
@@ -150,6 +236,11 @@ export default function Contact() {
       setMessage("");
       setHoneypot("");
       setErrors(initialErrors);
+      turnstileTokenRef.current = "";
+      setTurnstileToken("");
+      if (turnstileWidgetIdRef.current !== null && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetIdRef.current);
+      }
       setStatus("success");
       setFeedback("✓ Message sent successfully. I’ll get back to you as soon as I can.");
     } catch {
@@ -227,8 +318,15 @@ export default function Contact() {
                   <label htmlFor="contact-website">Website</label>
                   <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(event) => setHoneypot(event.target.value)} />
                 </div>
+                <div className="contact-turnstile" aria-live="polite">
+                  <div ref={turnstileContainerRef} className="cf-turnstile" />
+                  {turnstileState === "missing" ? <p className="contact-turnstile__message">Turnstile is unavailable because the site key is missing.</p> : null}
+                  {turnstileState === "loading" ? <p className="contact-turnstile__message">Loading verification…</p> : null}
+                  {turnstileState === "expired" ? <p className="contact-turnstile__message">Verification expired. Please complete it again.</p> : null}
+                  {turnstileState === "error" ? <p className="contact-turnstile__message">Verification could not load. Please try again later.</p> : null}
+                </div>
                 <div className="contact-drawer__actions">
-                  <button className="contact-drawer__submit" type="submit" data-status={status} disabled={status === "loading"}>
+                  <button className="contact-drawer__submit" type="submit" data-status={status} disabled={status === "loading" || !turnstileToken}>
                     {status === "loading" ? "SENDING..." : status === "success" ? "MESSAGE SENT ✓" : status === "error" ? "TRY AGAIN →" : "SEND MESSAGE →"}
                   </button>
                   <p className="contact-drawer__feedback" aria-live="polite" role="status">{feedback}</p>
