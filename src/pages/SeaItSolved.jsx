@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
+import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
 import { seaItSolvedProject as project } from "../data/seaItSolved.js";
 
 const featureSections = [
@@ -9,7 +10,7 @@ const featureSections = [
     title: "Overview",
     copy:
       "Sea-It-Solved is an automated lecture capturing and documentation system designed for mathematics lectures. The system combines classroom capture, computer vision, media processing, and AI-assisted processing to transform lecture content into structured digital learning materials.",
-    imageIndex: 0,
+    demo: true,
     className: "case-section--hero",
   },
   {
@@ -143,10 +144,11 @@ export default function SeaItSolved() {
             section.imageIndex === undefined
               ? null
               : project.images[section.imageIndex];
+          const demo = section.demo ? project.demo : null;
 
           return (
             <section
-              className={`case-section container ${section.className || ""} ${image ? "" : "case-section--text"}`}
+              className={`case-section container ${section.className || ""} ${image || demo ? "" : "case-section--text"}`}
               key={section.number}
             >
               <p className="case-section-label">{section.number}</p>
@@ -155,7 +157,9 @@ export default function SeaItSolved() {
                 <p>{section.copy}</p>
                 {section.note ? <p className="case-section-note">{section.note}</p> : null}
               </div>
-              {image ? (
+              {demo ? (
+                <ProjectDemoVideo demo={demo} autoPlayWhenVisible />
+              ) : image ? (
                 <button
                   className="case-image-button"
                   type="button"

@@ -12,6 +12,11 @@ export const seaItSolvedProject = {
   context: "Academic Thesis / Capstone",
   status: "Software Functional / Hardware Integration In Development",
   visitUrl: "",
+  demo: {
+    src: "/assets/demos/sea-it-solved-demo.mp4",
+    poster: heroImage,
+    title: "Sea-It-Solved system demo",
+  },
   technologies: [
     "React",
     "Vite",

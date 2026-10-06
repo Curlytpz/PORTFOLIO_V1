@@ -23,7 +23,7 @@ function findAnswer(question) {
   const match = ranked[0]?.score ? ranked[0].intent : null;
   return {
     text: match?.answer || fallbackAnswer,
-    action: match && ["resume", "experience"].includes(match.id) ? "resume" : null,
+    action: match && ["resume", "experience", "education", "skills", "projects", "certifications"].includes(match.id) ? "resume" : null,
   };
 }
 
@@ -123,7 +123,7 @@ export default function PortfolioChatbot() {
               {message.action === "resume" ? (
                 <a
                   className="portfolio-chat__cv-action"
-                  href="/assets/Kris_Benedict_Delos_Santos_CV_2026_Final.pdf"
+                  href="/assets/Kris_Benedict_Delos_Santos_CV_ATS.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

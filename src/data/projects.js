@@ -18,8 +18,20 @@ const projects = [
     link: "/projects/sea-it-solved",
   },
   {
-    id: "personal-portfolio",
+    id: "top-garage",
     number: "02",
+    title: "Top G / Top Garage",
+    subtitle: "Automotive Upholstery Business Website",
+    year: "2026",
+    status: ["In Development"],
+    categories: ["React", "JavaScript", "Responsive Design"],
+    description:
+      "Top G / Top Garage is an automotive upholstery business website for presenting seat-cover services, materials, business information, and customer quote requests.",
+    link: "/projects/top-garage",
+  },
+  {
+    id: "personal-portfolio",
+    number: "03",
     title: "Personal Portfolio",
     subtitle: "Personal Project",
     year: "2026",

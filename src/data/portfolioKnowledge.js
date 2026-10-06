@@ -1,123 +1,137 @@
 const portfolioKnowledge = {
   owner: "Kris Benedict M. Delos Santos",
-  location: "Mabalacat, Pampanga, Philippines",
   about:
-    "I’m Kris Benedict M. Delos Santos, a Computer Engineering student based in Mabalacat, Pampanga, Philippines. I’m interested in frontend development, web development, software development, IT support, and network/IT technician work.",
+    "I’m Kris Benedict M. Delos Santos, a Computer Engineering student at Holy Angel University, expected to graduate in 2027. I’m interested in frontend and web development, software development, IT support, and networking, with a strong interest in UI/UX and practical systems.",
   education:
-    "I’m studying Computer Engineering at Holy Angel University. My academic work includes software development, networking, hardware, and embedded systems.",
+    "I’m studying Computer Engineering at Holy Angel University and expect to graduate in 2027. My studies include software development, networking, hardware, and embedded systems.",
+  career:
+    "I’m currently looking for OJT or internship opportunities, especially in web development and software roles. I can also contribute to IT support and hardware or network troubleshooting while continuing toward full-stack development.",
   careerGoals:
-    "I’m working toward becoming a Senior Full-Stack Software Engineer or Web Developer. I’m also interested in building practical experience in IT support and networking.",
-  background:
-    "My interest in technology started with photo and video editing, graphic design, gaming, PC hardware, and building computers. That grew into an interest in frontend development, UI/UX, software engineering, and web development.",
-  workflow:
-    "I usually start with my own project or design idea, use AI to validate and improve the concept, plan the architecture and development steps, implement it, test and debug it, and keep refining it. I use AI as an assistant rather than as the sole developer.",
+    "My long-term goal is to become a full-stack software engineer or web developer who builds practical, well-designed systems.",
+  developmentApproach:
+    "I usually begin with my own ideas or problems, plan the features and architecture, then implement, research, test, and debug. I use documentation and AI tools as development support, but I make the implementation and design decisions myself and verify generated solutions.",
   webSkills: [
     "React",
     "Vite",
     "JavaScript",
-    "HTML",
-    "CSS",
+    "HTML/CSS",
     "Tailwind CSS",
-    "shadcn/ui",
-    "Lucide Icons",
-    "Framer Motion",
     "Node.js",
     "Express.js",
     "REST APIs",
     "PostgreSQL",
     "Supabase",
-    "JWT",
-    "Git",
-    "GitHub",
-    "VS Code",
+    "Firebase",
+    "Git/GitHub",
     "Vercel",
     "Render",
-    "Firebase/Firestore",
-    "Gmail API",
-    "OAuth 2.0",
-    "FFmpeg",
-    "FFprobe",
   ],
   itSupport: [
-    "PC assembly",
-    "hardware troubleshooting",
-    "diagnosing broken PCs",
-    "replacing PC components",
+    "desktop PC assembly",
+    "hardware diagnosis and repair",
+    "component replacement",
     "Windows installation and reinstallation",
     "driver installation",
     "BIOS configuration",
     "printer and peripheral troubleshooting",
     "cable crimping",
-    "basic networking",
+    "soldering",
+    "Arduino circuits",
+    "basic electronics",
+    "KiCad",
   ],
   networkingSkills: [
     "Cisco Packet Tracer",
-    "router configuration",
-    "switch configuration",
+    "router and switch configuration",
     "IP addressing",
     "subnetting",
     "DHCP",
     "NAT",
-    "ACL",
+    "ACLs",
+    "cable crimping",
   ],
-  hardwareSkills: [
-    "Arduino",
-    "Raspberry Pi",
-    "sensors",
-    "microcontrollers",
-    "breadboards",
-    "soldering",
-    "PCB design",
-    "KiCad",
-    "cameras",
-  ],
-  designMedia: ["Canva", "Lightroom", "CapCut"],
+  designMedia: ["Canva", "Lightroom", "CapCut", "UI/UX", "graphic design"],
   softSkills: [
+    "problem solving",
     "teamwork",
     "communication",
-    "problem-solving",
     "adaptability",
     "attention to detail",
     "willingness to learn",
     "time management",
     "working under pressure",
   ],
-  projects:
-    "My projects include Sea-It-Solved, a responsive personal portfolio, and Top G / Top Garage, a car seat-cover and tailoring business website in development. My portfolio also includes a Stack browser game and local interactive features.",
-  thesis:
-    "Sea-It-Solved is my academic thesis and capstone project. It is an automated lecture capturing and documentation system that transforms mathematics and whiteboard lectures into structured digital learning materials using computer vision and AI. My work includes the database, backend, email verification, logs, PostgreSQL/Supabase, Gmail verification, Gemini API, FFmpeg, deployment, system integration, and testing. The architecture includes a React frontend, Express backend, PostgreSQL database, and background workers. The software is working in development and testing, while hardware integration is still pending. My teammates also contribute to testing, hardware, and thesis documentation.",
+  seaItSolved:
+    "Sea-It-Solved is my Computer Engineering capstone and thesis: an automated lecture capturing and documentation system for mathematics lectures. It uses a React frontend, Express and Node.js backend, PostgreSQL and Supabase, role-based workflows, authentication and email verification, Gemini integration, and FFmpeg media processing. I worked on database and backend integration, verification and logging, testing, debugging, and system integration. The software platform is functional; physical classroom hardware integration is still in development.",
   topGarage:
-    "Top G / Top Garage is a website I’m currently developing for a car seat-cover and tailoring business. Planned features include a product and gallery showcase, seat-cover designs, vehicle selection, Messenger/contact, appointment booking, and an admin dashboard.",
+    "Top G / Top Garage is a real portfolio and client project for a car seat-cover tailoring business. It presents services, vehicle and seat-cover information, material and design options, and contact or location details. The project also supports appointment and customer workflows, with admin functionality where it is currently implemented.",
+  portfolio:
+    "My personal portfolio is a React and Vite project with responsive desktop and mobile layouts, light and dark modes, a graduation theme, animations, a music player, Stack mini-game, interactive profile card, this local assistant, a Firebase contact form, Cloudflare Turnstile, and Vercel deployment.",
   experience:
-    "My current experience comes from the Sea-It-Solved academic thesis and independent web development projects. I describe these as academic and personal work rather than professional employment.",
+    "My experience is based on academic and independent project work, including Sea-It-Solved, Top G / Top Garage, and my personal portfolio. I present this accurately as thesis, portfolio, and client-project work rather than professional employment.",
   certifications:
-    "My portfolio lists CCNA: Switching, Routing, and Wireless Essentials, completed through Cisco Networking Academy on June 17, 2025, and IT Essentials: PC Hardware and Software, completed on April 11, 2024. Both are Cisco Networking Academy credentials offered through Holy Angel University’s School of Engineering and Architecture. I do not claim to be CCNA Certified unless a credential says so.",
-  favoriteFoods:
-    "My favorite foods are adobo and sisig.",
+    "My certification includes Cisco Networking Academy — Computer Hardware Basics, completed in 2026.",
+  contact:
+    "You can reach me through the portfolio’s Contact or Message section. My email is krisbenedict2delossantos@gmail.com, and my links include GitHub and LinkedIn.",
+  resume:
+    "My CV covers my Computer Engineering education, project work, web development stack, IT and networking skills, and certification.",
+  favoriteFoods: "My favorite foods are adobo and sisig.",
   hobbies:
     "My hobbies include playing games, jogging or running, basketball, and pickleball.",
-  interests:
-    "My interests include gaming, music, design, and photography. I was also part of a Valorant championship team or event within the School of Engineering and Architecture in 2025.",
-  contact:
-    "You can contact me at krisbenedict2delossantos@gmail.com, visit github.com/Curlytpz, connect at linkedin.com/in/kris-santos-21b134280, or use the portfolio’s Message feature.",
-  games:
-    "The Playground includes Stack, an interactive JavaScript browser experiment where you place each moving block as precisely as possible.",
-  resume:
-    "My CV summarizes my Computer Engineering education, web development and IT support skills, academic thesis work, certifications, and independent projects.",
 };
 
 const list = (items) => items.join(", ");
 
 export const chatbotIntents = [
   {
+    id: "recruiter-about",
+    keywords: ["tell me about kris", "about kris", "who is kris", "introduce kris"],
+    answer: portfolioKnowledge.about,
+  },
+  {
+    id: "strongest-skills",
+    keywords: ["strongest skills", "best skills", "key strengths", "what is kris good at"],
+    answer:
+      "Kris’s strongest areas are frontend and web development, practical project building, UI/UX interest, and hands-on IT support and networking fundamentals. Sea-It-Solved and the personal portfolio demonstrate those skills in real project work.",
+  },
+  {
+    id: "hire",
+    keywords: ["why should we hire", "why hire kris", "why hire", "hire kris"],
+    answer:
+      "Kris can contribute as a detail-oriented intern who plans before building, learns unfamiliar tools when needed, and follows through with testing and debugging. His work on Sea-It-Solved, Top G, and his portfolio shows practical web development alongside IT and networking fundamentals.",
+  },
+  {
+    id: "intern-contribution",
+    keywords: ["contribute as an intern", "what can kris contribute", "intern contribution", "what can he contribute"],
+    answer:
+      "As an intern, Kris can contribute responsive frontend work, web application implementation, documentation, testing, debugging, and practical IT support or hardware and network troubleshooting. He is comfortable collaborating and learning the tools a project requires.",
+  },
+  {
+    id: "personal-work",
+    keywords: ["personally work on", "personally worked on", "what did kris work on", "his role", "kris role"],
+    answer:
+      "For Sea-It-Solved, Kris worked on database and backend integration, verification and logging, testing, debugging, and system integration. He also makes the implementation and design decisions for his independent portfolio work and Top G project.",
+  },
+  {
+    id: "frontend-backend",
+    keywords: ["frontend backend", "frontend and backend", "know frontend", "know backend", "full stack", "full-stack"],
+    answer:
+      "Kris is strongest in frontend and web development and also works with backend tools including Node.js, Express.js, REST APIs, PostgreSQL, Supabase, and Firebase. He is continuing to grow toward full-stack development through practical projects.",
+  },
+  {
     id: "about",
-    keywords: ["about", "who", "yourself", "introduce", "kris", "person", "location", "live", "based"],
+    keywords: ["about", "who", "yourself", "introduce", "kris", "person", "location", "based"],
     answer: portfolioKnowledge.about,
   },
   {
     id: "education",
-    keywords: ["education", "study", "studying", "school", "degree", "course", "major", "student", "computer engineering", "university", "ha u"],
+    keywords: ["education", "study", "studying", "school", "degree", "course", "major", "student", "computer engineering", "university", "holy angel", "graduation"],
     answer: portfolioKnowledge.education,
+  },
+  {
+    id: "career",
+    keywords: ["ojt", "internship", "intern", "career", "role", "opportunity", "looking for"],
+    answer: portfolioKnowledge.career,
   },
   {
     id: "goals",
@@ -125,44 +139,45 @@ export const chatbotIntents = [
     answer: portfolioKnowledge.careerGoals,
   },
   {
-    id: "background",
-    keywords: ["background", "started", "interest in technology", "why tech", "how did you start"],
-    answer: portfolioKnowledge.background,
-  },
-  {
-    id: "workflow",
-    keywords: ["workflow", "ai assisted", "ai-assisted", "use ai", "develop", "development process", "how do you build"],
-    answer: portfolioKnowledge.workflow,
+    id: "development-approach",
+    keywords: ["development approach", "development process", "how do you build", "workflow", "plan projects", "use ai", "ai assisted", "ai-assisted"],
+    answer: portfolioKnowledge.developmentApproach,
   },
   {
     id: "skills",
-    keywords: ["skill", "skills", "stack", "technology", "technologies", "tech", "tools", "frontend", "backend", "javascript", "react", "web development"],
-    answer: `My web development stack includes ${list(portfolioKnowledge.webSkills)}. I also have basic or academic experience in networking, hardware, and IT support.`,
+    keywords: ["skill", "skills", "stack", "technology", "technologies", "tech", "tools", "web development", "react", "vite", "javascript", "tailwind", "express", "postgresql", "supabase", "firebase"],
+    answer: `My web development stack includes ${list(portfolioKnowledge.webSkills)}. I describe my backend, networking, and hardware skills accurately as hands-on, academic, or continuing-learning experience where appropriate.`,
   },
   {
     id: "it-support",
-    keywords: ["it support", "technical support", "pc support", "computer repair", "troubleshoot", "broken pc", "windows installation", "bios", "printer", "pc assembly"],
-    answer: `I have experience with ${list(portfolioKnowledge.itSupport)}. These are practical, academic, or hands-on skills rather than claims of advanced professional expertise.`,
+    keywords: ["it support", "technical support", "pc support", "computer repair", "troubleshoot", "broken pc", "windows installation", "bios", "printer", "pc assembly", "peripheral"],
+    answer: `I have hands-on experience with ${list(portfolioKnowledge.itSupport)}. These are practical skills I have developed personally and academically, rather than claims of advanced professional IT employment.`,
   },
   {
     id: "networking",
-    keywords: ["networking", "network", "packet tracer", "router", "switch", "routing", "switching", "subnetting", "dhcp", "nat", "acl", "ip address"],
-    answer: `My networking experience includes ${list(portfolioKnowledge.networkingSkills)}.`,
+    keywords: ["networking experience", "networking", "network", "packet tracer", "router", "switch", "routing", "switching", "subnetting", "dhcp", "nat", "acl", "ip address"],
+    answer: `My networking experience includes ${list(portfolioKnowledge.networkingSkills)}. I’m continuing to strengthen my networking knowledge through practice and study.`,
   },
   {
     id: "hardware",
-    keywords: ["hardware", "embedded", "arduino", "raspberry pi", "sensor", "microcontroller", "soldering", "kicad", "pcb", "breadboard", "camera"],
-    answer: `I have basic or academic experience with ${list(portfolioKnowledge.hardwareSkills)}.`,
+    keywords: ["hardware experience", "hardware", "arduino", "soldering", "kicad", "electronics", "cable crimping", "component replacement"],
+    answer: `I have hands-on hardware experience with ${list(portfolioKnowledge.itSupport)}. I have personally assembled a desktop PC and worked on practical troubleshooting, repairs, and basic electronics projects.`,
   },
   {
     id: "projects",
-    keywords: ["project", "projects", "built", "made", "work", "portfolio", "created"],
-    answer: portfolioKnowledge.projects,
+    keywords: ["what projects", "projects", "project", "built", "made", "created", "portfolio project"],
+    answer:
+      "Kris has built Sea-It-Solved, an academic lecture-capture thesis system; Top G / Top Garage, a car-seat-cover business website; and this React/Vite portfolio. Each project focuses on practical user needs rather than invented metrics or employment claims.",
+  },
+  {
+    id: "portfolio",
+    keywords: ["personal portfolio", "your portfolio", "this portfolio", "portfolio features"],
+    answer: portfolioKnowledge.portfolio,
   },
   {
     id: "thesis",
-    keywords: ["thesis", "sea-it-solved", "sea it solved", "research", "capstone", "case study", "lecture capture", "whiteboard"],
-    answer: portfolioKnowledge.thesis,
+    keywords: ["thesis", "sea-it-solved", "sea it solved", "research", "capstone", "lecture capture", "whiteboard", "mathematics lectures"],
+    answer: portfolioKnowledge.seaItSolved,
   },
   {
     id: "top-garage",
@@ -171,13 +186,24 @@ export const chatbotIntents = [
   },
   {
     id: "experience",
-    keywords: ["experience", "job", "work experience", "career", "internship", "professional", "employment"],
+    keywords: ["experience", "work experience", "professional", "employment", "qualifications"],
     answer: portfolioKnowledge.experience,
   },
   {
     id: "certifications",
-    keywords: ["certification", "certifications", "certificate", "credential", "ccna", "cisco", "it essentials"],
+    keywords: ["certification", "certifications", "certificate", "credential", "cisco", "computer hardware basics"],
     answer: portfolioKnowledge.certifications,
+  },
+  {
+    id: "current-learning",
+    keywords: ["currently learning", "what is kris learning", "learning now", "improving"],
+    answer:
+      "Kris is continuing to develop toward full-stack web development while improving his networking knowledge. He also learns unfamiliar technologies as project requirements arise.",
+  },
+  {
+    id: "design-media",
+    keywords: ["design", "ui ux", "ui/ux", "canva", "lightroom", "capcut", "graphic design"],
+    answer: `My design and media experience includes ${list(portfolioKnowledge.designMedia)}. I bring that UI/UX interest into practical web interfaces.`,
   },
   {
     id: "food",
@@ -186,32 +212,22 @@ export const chatbotIntents = [
   },
   {
     id: "hobbies",
-    keywords: ["hobby", "hobbies", "free time", "pastime", "pastimes", "gaming", "games", "basketball", "pickleball", "jogging", "running"],
+    keywords: ["hobby", "hobbies", "free time", "pastime", "gaming", "games", "basketball", "pickleball", "jogging", "running"],
     answer: portfolioKnowledge.hobbies,
   },
   {
-    id: "interests",
-    keywords: ["interest", "interests", "music", "photography", "valorant"],
-    answer: portfolioKnowledge.interests,
-  },
-  {
     id: "contact",
-    keywords: ["contact", "email", "reach", "message", "hire", "connect", "linkedin", "github"],
+    keywords: ["contact", "email", "reach", "message", "connect", "linkedin", "github", "how can i contact"],
     answer: portfolioKnowledge.contact,
   },
   {
-    id: "games",
-    keywords: ["game", "games", "playground", "stack game", "play"],
-    answer: portfolioKnowledge.games,
-  },
-  {
     id: "resume",
-    keywords: ["resume", "cv", "curriculum", "vitae", "view my cv", "show me your cv", "see your resume", "qualifications"],
+    keywords: ["resume", "cv", "curriculum vitae", "view my cv", "show me your cv", "show me his cv", "see your resume", "see his resume", "view cv"],
     answer: portfolioKnowledge.resume,
   },
 ];
 
 export const fallbackAnswer =
-  "I’m not sure about that, and I don’t want to guess. Try asking about my education, projects, skills, thesis, IT support, certifications, interests, hobbies, favorite food, or contact information.";
+  "I’m not sure about that, and I don’t want to guess. Try asking about Kris’s education, projects, skills, thesis, IT support, networking, certifications, career goals, CV, or contact information.";
 
 export default portfolioKnowledge;

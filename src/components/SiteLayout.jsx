@@ -12,6 +12,7 @@ const pageTitles = {
   "/playground": "Playground — Kris Benedict Delos Santos",
   "/games": "Playground — Kris Benedict Delos Santos",
   "/projects/sea-it-solved": "Sea-It-Solved — Kris Benedict Delos Santos",
+  "/projects/top-garage": "Top G / Top Garage — Kris Benedict Delos Santos",
 };
 
 export default function SiteLayout() {
