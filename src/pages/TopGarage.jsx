@@ -163,6 +163,24 @@ export default function TopGarage() {
             </section>
           </div>
         </section>
+
+        <section className="case-section case-status container">
+          <p className="case-section-label">07 / Project Status</p>
+          <div className="case-section-copy">
+            <h2>Project Status</h2>
+            <p>
+              TOP G is currently in development. Core website pages and
+              customer-facing features are being implemented and refined for
+              the business.
+            </p>
+          </div>
+          <dl className="case-status-grid">
+            <div>
+              <dt>Website Development</dt>
+              <dd>In Development</dd>
+            </div>
+          </dl>
+        </section>
       </main>
 
       <div className="page-footer">
