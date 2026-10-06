@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
+import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { topGarageProject as project } from "../data/topGarage.js";
 
 const featureSections = [
@@ -143,7 +144,7 @@ export default function TopGarage() {
                 onClick={() => setLightboxIndex(section.imageIndex)}
                 aria-label={`View ${image.caption} at full size`}
               >
-                <img className="case-image" src={image.src} alt={image.alt} />
+                <ThemeAwareImage media={image.src} className="case-image" alt={image.alt} />
                 <span className="case-image-caption">{image.caption}</span>
               </button>
             </section>
@@ -215,8 +216,8 @@ export default function TopGarage() {
             ←
           </button>
           <figure className="project-lightbox__figure">
-            <img
-              src={project.images[lightboxIndex].src}
+            <ThemeAwareImage
+              media={project.images[lightboxIndex].src}
               alt={project.images[lightboxIndex].alt}
             />
             <figcaption>{project.images[lightboxIndex].caption}</figcaption>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
+import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { seaItSolvedProject as project } from "../data/seaItSolved.js";
 
 const featureSections = [
@@ -166,7 +167,7 @@ export default function SeaItSolved() {
                   onClick={() => openLightbox(section.imageIndex)}
                   aria-label={`View ${image.caption} at full size`}
                 >
-                  <img className="case-image" src={image.src} alt={image.alt} />
+                  <ThemeAwareImage media={image.src} className="case-image" alt={image.alt} />
                   <span className="case-image-caption">{image.caption}</span>
                 </button>
               ) : null}
@@ -225,11 +226,11 @@ export default function SeaItSolved() {
               <button
                 className="case-gallery-item"
                 type="button"
-                key={image.src}
+                key={image.caption}
                 onClick={() => openLightbox(index)}
                 aria-label={`Open ${image.caption} at full size`}
               >
-                <img src={image.src} alt={image.alt} />
+                <ThemeAwareImage media={image.src} alt={image.alt} />
                 <span>{image.caption}</span>
               </button>
             ))}
@@ -269,8 +270,8 @@ export default function SeaItSolved() {
             ←
           </button>
           <figure className="project-lightbox__figure">
-            <img
-              src={project.images[lightboxIndex].src}
+            <ThemeAwareImage
+              media={project.images[lightboxIndex].src}
               alt={project.images[lightboxIndex].alt}
             />
             <figcaption>{project.images[lightboxIndex].caption}</figcaption>

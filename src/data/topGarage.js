@@ -1,7 +1,11 @@
 import aboutImage from "../assets/top-g/about.png";
+import aboutDarkImage from "../assets/top-g/about-dark.png";
 import contactImage from "../assets/top-g/contact.png";
+import contactDarkImage from "../assets/top-g/contact-dark.png";
 import materialsImage from "../assets/top-g/materials.png";
+import materialsDarkImage from "../assets/top-g/materials-dark.png";
 import servicesImage from "../assets/top-g/services.png";
+import servicesDarkImage from "../assets/top-g/services-dark.png";
 
 export const topGarageProject = {
   title: "Top G / Top Garage",
@@ -11,8 +15,14 @@ export const topGarageProject = {
   status: "In Development",
   visitUrl: "",
   demo: {
-    src: "/assets/demos/top-g-auto-seat-demo.mp4",
-    poster: servicesImage,
+    src: {
+      light: "/assets/demos/top-g-auto-seat-demo.mp4",
+      dark: "/assets/demos/top-g-auto-seat-demo-dark-20261007-032119.mp4",
+    },
+    poster: {
+      light: servicesImage,
+      dark: servicesDarkImage,
+    },
     title: "Top G Auto Seat system demo",
   },
   features: [
@@ -31,22 +41,22 @@ export const topGarageProject = {
   ],
   images: [
     {
-      src: servicesImage,
+      src: { light: servicesImage, dark: servicesDarkImage },
       alt: "Top G Auto Seat services page with automotive upholstery service cards",
       caption: "Services",
     },
     {
-      src: aboutImage,
+      src: { light: aboutImage, dark: aboutDarkImage },
       alt: "Top G Auto Seat about page with business information",
       caption: "About",
     },
     {
-      src: contactImage,
+      src: { light: contactImage, dark: contactDarkImage },
       alt: "Top G Auto Seat contact page with phone, email, and location details",
       caption: "Contact",
     },
     {
-      src: materialsImage,
+      src: { light: materialsImage, dark: materialsDarkImage },
       alt: "Top G Auto Seat materials page showing upholstery material options",
       caption: "Materials",
     },

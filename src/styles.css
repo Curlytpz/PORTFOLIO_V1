@@ -5354,3 +5354,110 @@ body {
     right: 0;
   }
 }
+
+/* Paired Sea-It-Solved screenshot media: both sources preload and crossfade in place. */
+.theme-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-hover);
+}
+
+.theme-media__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 400ms ease;
+}
+
+.theme-media__image--dark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.theme-media.is-dark .theme-media__image--light {
+  opacity: 0;
+}
+
+.theme-media.is-dark .theme-media__image--dark {
+  opacity: 1;
+}
+
+.case-image-button:hover .theme-media.is-dark .theme-media__image--light,
+.case-image-button:focus-visible .theme-media.is-dark .theme-media__image--light,
+.case-gallery-item:hover .theme-media.is-dark .theme-media__image--light,
+.case-gallery-item:focus-visible .theme-media.is-dark .theme-media__image--light {
+  opacity: 0;
+}
+
+.project-lightbox__figure .theme-media {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  background: transparent;
+}
+
+.project-lightbox__figure .theme-media__image--light {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 8rem);
+  object-fit: contain;
+}
+
+.project-lightbox__figure .theme-media__image--dark {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-media__image {
+    transition: none;
+  }
+}
+
+.case-gallery-item > .theme-media {
+  padding: 0;
+  font-size: initial;
+}
+
+.case-study-page > .case-section .theme-media .theme-media__image--dark,
+.case-gallery-item .theme-media .theme-media__image--dark {
+  height: 100%;
+}
+
+/* Theme-aware Overview videos keep the light source as the sizing layer while variants crossfade. */
+.project-demo__video--theme-variant {
+  transition: opacity 400ms ease;
+}
+
+.project-demo__video--theme-variant:not(.is-active) {
+  pointer-events: none;
+}
+
+.project-demo__video--dark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.project-demo__video--dark.is-active {
+  opacity: 1;
+}
+
+.project-demo__video--light:not(.is-active) {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-demo__video--theme-variant {
+    transition: none;
+  }
+}

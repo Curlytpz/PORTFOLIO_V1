@@ -1,9 +1,14 @@
 import aiWorkspaceImage from "../assets/ai-workspace.png.png";
+import aiWorkspaceDarkImage from "../assets/sea-it-solved/ai-lesson-materials-dark.png";
 import hardwareSettingsImage from "../assets/hardware-settings.png.png";
+import hardwareSettingsDarkImage from "../assets/sea-it-solved/hardware-settings-dark.png";
 import heroImage from "../assets/hero.png.png";
 import instructorDashboardImage from "../assets/instructor-dashboard.png.png";
+import instructorDashboardDarkImage from "../assets/sea-it-solved/instructor-dashboard-dark.png";
 import quizImage from "../assets/quiz.png.png";
+import quizDarkImage from "../assets/sea-it-solved/assessments-dark.png";
 import signinImage from "../assets/signin.png.png";
+import signinDarkImage from "../assets/sea-it-solved/system-access-dark.png";
 
 export const seaItSolvedProject = {
   title: "Sea-It-Solved",
@@ -13,8 +18,14 @@ export const seaItSolvedProject = {
   status: "Software Functional / Hardware Integration In Development",
   visitUrl: "",
   demo: {
-    src: "/assets/demos/sea-it-solved-demo.mp4",
-    poster: heroImage,
+    src: {
+      light: "/assets/demos/sea-it-solved-demo.mp4",
+      dark: null,
+    },
+    poster: {
+      light: heroImage,
+      dark: null,
+    },
     title: "Sea-It-Solved system demo",
   },
   technologies: [
@@ -76,32 +87,35 @@ export const seaItSolvedProject = {
   ],
   images: [
     {
-      src: heroImage,
+      src: { light: heroImage, dark: null },
       alt: "Sea-It-Solved application overview showing the main system interface",
       caption: "Sea-It-Solved project overview",
     },
     {
-      src: signinImage,
+      src: { light: signinImage, dark: signinDarkImage },
       alt: "Sea-It-Solved sign-in screen for student, instructor, and administrator access",
       caption: "System access",
     },
     {
-      src: instructorDashboardImage,
+      src: {
+        light: instructorDashboardImage,
+        dark: instructorDashboardDarkImage,
+      },
       alt: "Sea-It-Solved instructor dashboard with class and lesson management tools",
       caption: "Instructor workspace",
     },
     {
-      src: hardwareSettingsImage,
+      src: { light: hardwareSettingsImage, dark: hardwareSettingsDarkImage },
       alt: "Sea-It-Solved classroom camera, lighting, and microphone settings",
       caption: "Hardware integration settings",
     },
     {
-      src: aiWorkspaceImage,
+      src: { light: aiWorkspaceImage, dark: aiWorkspaceDarkImage },
       alt: "Sea-It-Solved AI lesson workspace using approved lesson context",
       caption: "AI-assisted lesson materials",
     },
     {
-      src: quizImage,
+      src: { light: quizImage, dark: quizDarkImage },
       alt: "Sea-It-Solved assessment editor with questions and answer choices",
       caption: "Generated assessments",
     },
