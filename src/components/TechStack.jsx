@@ -2,16 +2,18 @@ import {
   SiCss,
   SiExpress,
   SiFigma,
+  SiFirebase,
   SiGit,
   SiGithub,
   SiHtml5,
   SiJavascript,
-  SiJsonwebtokens,
   SiNodedotjs,
   SiPostgresql,
   SiReact,
+  SiRender,
   SiSupabase,
   SiTailwindcss,
+  SiVercel,
   SiVite,
 } from "react-icons/si";
 import { LuBraces } from "react-icons/lu";
@@ -41,58 +43,27 @@ const groups = [
     ],
   },
   {
-    label: "Backend",
+    label: "Backend & Database",
     items: [
       { label: "Node.js", icon: SiNodedotjs },
       { label: "Express.js", icon: SiExpress },
       { label: "PostgreSQL", icon: SiPostgresql },
       { label: "Supabase", icon: SiSupabase },
-      { label: "JWT", icon: SiJsonwebtokens },
+      { label: "Firebase", icon: SiFirebase },
       { label: "REST API", icon: LuBraces },
     ],
   },
   {
-    label: "Developer Tools",
+    label: "Tools & Deployment",
     items: [
       { label: "Git", icon: SiGit },
       { label: "GitHub", icon: SiGithub },
       { label: "VS Code", icon: VscVscode },
+      { label: "Vercel", icon: SiVercel },
+      { label: "Render", icon: SiRender },
       { label: "Figma", icon: SiFigma },
       { label: "Canva", icon: CanvaIcon },
     ],
-  },
-];
-
-const capabilities = [
-  {
-    label: "Networking",
-    items: [
-      "Cisco Packet Tracer",
-      "Routing & Switching",
-      "IP Addressing",
-      "Subnetting",
-      "DHCP",
-      "NAT",
-      "ACL",
-    ],
-  },
-  {
-    label: "Hardware & Embedded",
-    items: [
-      "PC Assembly",
-      "Hardware Troubleshooting",
-      "Arduino",
-      "Raspberry Pi",
-      "Sensors",
-      "Microcontrollers",
-      "Breadboarding",
-      "Soldering",
-      "Camera Integration",
-    ],
-  },
-  {
-    label: "Engineering Tools",
-    items: ["KiCad", "PCB Design"],
   },
 ];
 
@@ -122,20 +93,6 @@ export default function TechStack() {
           </ul>
         </div>
       ))}
-
-      <div className="technical-capabilities">
-        <p className="technical-capabilities__label">
-          Additional hands-on capabilities
-        </p>
-        <div className="technical-capabilities__grid">
-          {capabilities.map((group) => (
-            <section className="capability-group" key={group.label}>
-              <h3>{group.label}</h3>
-              <p>{group.items.join(" · ")}</p>
-            </section>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
