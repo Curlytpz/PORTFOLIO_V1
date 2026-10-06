@@ -17,8 +17,14 @@ export default function MusicPlayer({ songs = defaultPlaylist }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
+
+  const hideMusic = () => {
+    setIsHidden(true);
+    window.dispatchEvent(new Event("portfolio-music-close"));
+  };
+
   useEffect(() => {
-    const closeForChat = () => setIsHidden(true);
+    const closeForChat = () => hideMusic();
     window.addEventListener("portfolio-chat-open", closeForChat);
     return () => window.removeEventListener("portfolio-chat-open", closeForChat);
   }, []);
@@ -34,7 +40,7 @@ export default function MusicPlayer({ songs = defaultPlaylist }) {
 
     const closeOnOutsideClick = (event) => {
       if (playerRef.current?.contains(event.target) || tabRef.current?.contains(event.target)) return;
-      setIsHidden(true);
+      hideMusic();
     };
 
     document.addEventListener("pointerdown", closeOnOutsideClick);
@@ -130,7 +136,7 @@ export default function MusicPlayer({ songs = defaultPlaylist }) {
           <button
             className="music-player__hide"
             type="button"
-            onClick={() => setIsHidden(true)}
+            onClick={hideMusic}
             aria-label="Hide music player"
           >
             <span aria-hidden="true">×</span>

@@ -29,14 +29,23 @@ function findAnswer(question) {
 
 export default function PortfolioChatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMusicOpen, setIsMusicOpen] = useState(false);
   const chatRef = useRef(null);
   const responseTimerRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [question, setQuestion] = useState("");
   useEffect(() => {
-    const closeForMusic = () => setIsOpen(false);
+    const closeForMusic = () => {
+      setIsOpen(false);
+      setIsMusicOpen(true);
+    };
+    const restoreAfterMusic = () => setIsMusicOpen(false);
     window.addEventListener("portfolio-music-open", closeForMusic);
-    return () => window.removeEventListener("portfolio-music-open", closeForMusic);
+    window.addEventListener("portfolio-music-close", restoreAfterMusic);
+    return () => {
+      window.removeEventListener("portfolio-music-open", closeForMusic);
+      window.removeEventListener("portfolio-music-close", restoreAfterMusic);
+    };
   }, []);
 
   useEffect(() => {
@@ -176,7 +185,7 @@ export default function PortfolioChatbot() {
         </form>
       </section>
 
-      {!isOpen && (
+      {!isOpen && !isMusicOpen && (
         <button
           className="portfolio-chat__trigger"
           type="button"

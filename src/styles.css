@@ -2126,7 +2126,7 @@ html:not(.intro-complete) .intro-photo-frame {
   padding: 0;
   place-items: center;
   border: 1px solid var(--border);
-  border-right: 0;
+  border-right: 1px solid var(--border);
   border-radius: 0;
   background: var(--bg);
   color: var(--text-muted);
