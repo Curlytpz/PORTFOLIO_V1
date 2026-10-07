@@ -5,36 +5,18 @@ import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
 import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { topGarageProject as project } from "../data/topGarage.js";
 
-const featureSections = [
-  {
-    number: "02 / Services",
-    title: "Services",
-    copy:
-      "The services page presents the automotive upholstery work available through Top G, including custom seat covers, interior re-upholstery, ceiling work, and installation options.",
-    imageIndex: 0,
-  },
-  {
-    number: "03 / About",
-    title: "About",
-    copy:
-      "The about page introduces Top G’s approach to custom automotive interiors, along with business details that help visitors understand the services and location.",
-    imageIndex: 1,
-  },
-  {
-    number: "04 / Contact",
-    title: "Contact",
-    copy:
-      "The contact page brings together phone, email, shop location, business hours, and a map so visitors can quickly get in touch or plan a visit.",
-    imageIndex: 2,
-  },
-  {
-    number: "05 / Materials",
-    title: "Materials",
-    copy:
-      "The materials page helps customers explore seat-cover options and warranty details before starting a quote conversation for their vehicle.",
-    imageIndex: 3,
-  },
-];
+function DetailGrid({ groups, label }) {
+  return (
+    <div className="architecture-grid" aria-label={label}>
+      {groups.map((group) => (
+        <section className="architecture-group" key={group.label}>
+          <h3>{group.label}</h3>
+          <p>{group.items.join(" · ")}</p>
+        </section>
+      ))}
+    </div>
+  );
+}
 
 export default function TopGarage() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -92,7 +74,7 @@ export default function TopGarage() {
           <Link to="/#work" className="back-link">
             ← Back to projects
           </Link>
-          <p className="case-header-label">Featured project</p>
+          <p className="case-header-label">Live client project</p>
           <h1 className="case-title">{project.title}</h1>
           <p className="case-subtitle">{project.subtitle}</p>
           <p className="case-meta-line">
@@ -103,84 +85,166 @@ export default function TopGarage() {
               <li key={technology}>{technology}</li>
             ))}
           </ul>
-          {project.visitUrl ? (
+          <div className="case-header-actions" aria-label="Project links">
             <a
               className="case-visit-link"
               href={project.visitUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit Project ↗
+              LIVE SITE ↗
             </a>
-          ) : null}
+            <a
+              className="case-visit-link"
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GITHUB ↗
+            </a>
+          </div>
         </header>
 
         <section className="case-section case-section--hero container">
           <p className="case-section-label">01 / Overview</p>
           <div className="case-section-copy">
             <h2>Overview</h2>
-            <p>
-              Top G / Top Garage is an automotive upholstery business website
-              for presenting interior services, materials, business information,
-              and ways for visitors to request a quote.
-            </p>
+            <p>{project.overview}</p>
+            <p className="case-section-note">{project.role}</p>
           </div>
           <ProjectDemoVideo demo={project.demo} autoPlayWhenVisible />
         </section>
 
-        {featureSections.map((section) => {
-          const image = project.images[section.imageIndex];
-
-          return (
-            <section className="case-section container" key={section.number}>
-              <p className="case-section-label">{section.number}</p>
-              <div className="case-section-copy">
-                <h2>{section.title}</h2>
-                <p>{section.copy}</p>
-              </div>
-              <button
-                className="case-image-button"
-                type="button"
-                onClick={() => setLightboxIndex(section.imageIndex)}
-                aria-label={`View ${image.caption} at full size`}
-              >
-                <ThemeAwareImage media={image.src} className="case-image" alt={image.alt} />
-                <span className="case-image-caption">{image.caption}</span>
-              </button>
-            </section>
-          );
-        })}
-
-        <section className="case-section case-architecture container">
-          <p className="case-section-label">06 / Technology &amp; Architecture</p>
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">02 / Problem</p>
           <div className="case-section-copy">
-            <h2>Technology &amp; Architecture</h2>
-            <p>The site is built with a responsive frontend-focused stack.</p>
+            <h2>Problem</h2>
+            <p>{project.problem}</p>
           </div>
-          <div className="architecture-grid">
-            <section className="architecture-group">
-              <h3>Technologies</h3>
-              <p>{project.technologies.join(" · ")}</p>
-            </section>
+        </section>
+
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">03 / Solution</p>
+          <div className="case-section-copy">
+            <h2>Solution</h2>
+            <p>{project.solution}</p>
+          </div>
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">04 / Key Features</p>
+          <div className="case-section-copy">
+            <h2>Key Features</h2>
+            <p>
+              Customer-facing and administrative workflows are integrated into
+              one responsive system.
+            </p>
+          </div>
+          <DetailGrid groups={project.featureGroups} label="TOP-G key features" />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">05 / Tech Stack</p>
+          <div className="case-section-copy">
+            <h2>Tech Stack</h2>
+            <p>
+              The production stack supports the public website, API, database,
+              media management, security, and deployment workflow.
+            </p>
+          </div>
+          <DetailGrid groups={project.techGroups} label="TOP-G technology stack" />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">06 / System Architecture</p>
+          <div className="case-section-copy">
+            <h2>System Architecture</h2>
+            <p>
+              The React client communicates with the Express API, which uses
+              Prisma to access Supabase PostgreSQL. Cloudinary stores project
+              imagery separately.
+            </p>
+          </div>
+          <DetailGrid groups={project.architecture} label="TOP-G system architecture" />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">07 / Security</p>
+          <div className="case-section-copy">
+            <h2>Security</h2>
+            <p>
+              Public submissions and protected management workflows are handled
+              through layered validation and access controls.
+            </p>
+          </div>
+          <DetailGrid groups={project.security} label="TOP-G security controls" />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">08 / Admin Dashboard</p>
+          <div className="case-section-copy">
+            <h2>Admin Dashboard</h2>
+            <p>
+              The business owner can manage customer quotations and control the
+              projects displayed on the public website.
+            </p>
+          </div>
+          <DetailGrid groups={project.adminCapabilities} label="TOP-G admin capabilities" />
+        </section>
+
+        <section className="case-section case-gallery container">
+          <p className="case-section-label">09 / Screenshots</p>
+          <div className="case-section-copy">
+            <h2>Screenshots</h2>
+            <p>Selected public interfaces from the deployed TOP-G website.</p>
+          </div>
+          <div className="case-gallery-grid">
+            {project.images.map((image, index) => (
+              <button
+                className="case-gallery-item"
+                type="button"
+                key={image.caption}
+                onClick={() => setLightboxIndex(index)}
+                aria-label={`Open ${image.caption} at full size`}
+              >
+                <ThemeAwareImage media={image.src} alt={image.alt} />
+                <span>{image.caption}</span>
+              </button>
+            ))}
           </div>
         </section>
 
         <section className="case-section case-status container">
-          <p className="case-section-label">07 / Project Status</p>
+          <p className="case-section-label">10 / Deployment</p>
           <div className="case-section-copy">
-            <h2>Project Status</h2>
+            <h2>Deployment</h2>
             <p>
-              TOP G is currently in development. Core website pages and
-              customer-facing features are being implemented and refined for
-              the business.
+              The full production system is deployed across managed frontend,
+              API, database, and media services.
             </p>
           </div>
-          <dl className="case-status-grid">
-            <div>
-              <dt>Website Development</dt>
-              <dd>In Development</dd>
-            </div>
+          <dl className="case-status-grid case-status-grid--deployment">
+            {project.deployment.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))}
           </dl>
+        </section>
+
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">11 / What I Learned</p>
+          <div className="case-section-copy">
+            <h2>What I Learned</h2>
+            <p>
+              Building TOP-G strengthened my ability to take a real business
+              system from planning through production. I gained deeper practical
+              experience with full-stack architecture, database and media
+              workflows, protected admin tools, security, responsive UI design,
+              optimization, and deployment across multiple services.
+            </p>
+          </div>
         </section>
       </main>
 
@@ -193,7 +257,7 @@ export default function TopGarage() {
           className="project-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label="Top G project image viewer"
+          aria-label="TOP-G project image viewer"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeLightbox();
           }}

@@ -20,14 +20,16 @@ const projects = [
   {
     id: "top-garage",
     number: "02",
-    title: "Top G / Top Garage",
-    subtitle: "Automotive Upholstery Business Website",
+    title: "TOP-G Auto Seat",
+    subtitle: "Full-Stack Business Website & Management System",
     year: "2026",
-    status: ["In Development"],
-    categories: ["React", "JavaScript", "Responsive Design"],
+    status: ["Live / Deployed"],
+    categories: ["React", "Express.js", "PostgreSQL", "Prisma ORM"],
     description:
-      "Top G / Top Garage is an automotive upholstery business website for presenting seat-cover services, materials, business information, and customer quote requests.",
+      "A full-stack business website and management system for a custom automotive upholstery business, with public service and material pages, quotation requests, project galleries, and a protected admin dashboard.",
     link: "/projects/top-garage",
+    liveUrl: "https://topgautoseat.vercel.app",
+    githubUrl: "https://github.com/Curlytpz/TOP-G",
   },
   {
     id: "personal-portfolio",

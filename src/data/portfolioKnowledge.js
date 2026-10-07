@@ -68,7 +68,7 @@ const portfolioKnowledge = {
   portfolio:
     "My personal portfolio is a React and Vite project with responsive desktop and mobile layouts, light and dark modes, a graduation theme, animations, a music player, Stack mini-game, interactive profile card, this local assistant, a Firebase contact form, Cloudflare Turnstile, and Vercel deployment.",
   experience:
-    "My experience is based on academic and independent project work, including Sea-It-Solved, Top G / Top Garage, and my personal portfolio. I present this accurately as thesis, portfolio, and client-project work rather than professional employment.",
+    "My experience includes academic and independent project work: Sea-It-Solved, the live TOP-G Auto Seat client system, and my personal portfolio. I present this accurately as thesis, client-project, and portfolio work rather than professional employment.",
   certifications:
     "My certification includes Cisco Networking Academy — Computer Hardware Basics, completed in 2026.",
   contact:
@@ -167,7 +167,7 @@ export const chatbotIntents = [
     id: "projects",
     keywords: ["what projects", "projects", "project", "built", "made", "created", "portfolio project"],
     answer:
-      "Kris has built Sea-It-Solved, an academic lecture-capture thesis system; Top G / Top Garage, a car-seat-cover business website; and this React/Vite portfolio. Each project focuses on practical user needs rather than invented metrics or employment claims.",
+      "Kris has built Sea-It-Solved, an academic lecture-capture thesis system; TOP-G Auto Seat, a deployed full-stack business and management system; and this React/Vite portfolio. Each project addresses practical user needs without inventing metrics or employment claims.",
   },
   {
     id: "portfolio",
@@ -181,7 +181,7 @@ export const chatbotIntents = [
   },
   {
     id: "top-garage",
-    keywords: ["top g", "top garage", "car seat", "tailoring", "seat cover", "business website"],
+    keywords: ["top g", "top-g", "top garage", "top-g auto seat", "car seat", "tailoring", "seat cover", "business website"],
     answer: portfolioKnowledge.topGarage,
   },
   {

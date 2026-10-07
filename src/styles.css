@@ -5461,3 +5461,43 @@ body {
     transition: none;
   }
 }
+
+/* TOP-G project actions and production case-study details. */
+.project-actions,
+.case-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.case-header-actions {
+  margin-top: var(--space-4);
+}
+
+.case-header .case-header-actions .case-visit-link {
+  margin-top: 0;
+}
+
+.case-status-grid--deployment > div:nth-child(2n) {
+  border-right: 0;
+}
+
+@media (max-width: 720px) {
+  .project-actions,
+  .case-header-actions {
+    width: 100%;
+    gap: 0.65rem 1rem;
+  }
+
+  .project-actions .project-link,
+  .case-header-actions .case-visit-link {
+    min-height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .case-status-grid--deployment > div {
+    border-right: 0;
+  }
+}

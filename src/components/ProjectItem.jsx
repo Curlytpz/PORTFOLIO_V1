@@ -43,11 +43,33 @@ export default function ProjectItem({ project }) {
               <span className="status-badge" key={status}>{status}</span>
             ))}
           </div>
-          {project.link ? (
-            <Link to={project.link} className="project-link">
-              View project <span className="arrow">→</span>
-            </Link>
-          ) : null}
+          <div className="project-actions">
+            {project.link ? (
+              <Link to={project.link} className="project-link">
+                View project <span className="arrow">→</span>
+              </Link>
+            ) : null}
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                className="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LIVE SITE ↗
+              </a>
+            ) : null}
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                className="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GITHUB ↗
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     </article>
