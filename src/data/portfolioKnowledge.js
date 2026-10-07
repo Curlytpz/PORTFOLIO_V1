@@ -62,7 +62,7 @@ const portfolioKnowledge = {
     "working under pressure",
   ],
   seaItSolved:
-    "Sea-It-Solved is my Computer Engineering capstone and thesis: an automated lecture capturing and documentation system for mathematics lectures. It uses a React frontend, Express and Node.js backend, PostgreSQL and Supabase, role-based workflows, authentication and email verification, Gemini integration, and FFmpeg media processing. I worked on database and backend integration, verification and logging, testing, debugging, and system integration. The software platform is functional; physical classroom hardware integration is still in development.",
+    "Sea-It-Solved is my Computer Engineering capstone and thesis: a deployed automated lecture capturing and documentation system for mathematics-focused classroom workflows. It uses a React frontend, Express and Node.js backend, PostgreSQL and Supabase, role-based workflows, authentication and email verification, Gemini integration, and FFmpeg media processing. I lead the software work across frontend, backend, database, authentication, AI integration, media processing, security, debugging, and system integration. Instructors review AI-assisted lesson context and materials before publication. The web software is functional and deployed; physical classroom hardware integration is still in development.",
   topGarage:
     "Top G / Top Garage is a real portfolio and client project for a car seat-cover tailoring business. It presents services, vehicle and seat-cover information, material and design options, and contact or location details. The project also supports appointment and customer workflows, with admin functionality where it is currently implemented.",
   portfolio:

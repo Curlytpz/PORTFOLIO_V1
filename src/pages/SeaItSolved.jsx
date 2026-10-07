@@ -1,64 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
-import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
 import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { seaItSolvedProject as project } from "../data/seaItSolved.js";
 
-const featureSections = [
-  {
-    number: "01 / Overview",
-    title: "Overview",
-    copy:
-      "Sea-It-Solved is an automated lecture capturing and documentation system designed for mathematics lectures. The system combines classroom capture, computer vision, media processing, and AI-assisted processing to transform lecture content into structured digital learning materials.",
-    demo: true,
-    className: "case-section--hero",
-  },
-  {
-    number: "02 / My Role",
-    title: "My Role",
-    copy:
-      "I lead the software development of Sea-It-Solved, working across the frontend, backend, database, authentication, AI integration, media processing, security, and overall application architecture. I also handle system integration and debugging while collaborating with the team on hardware testing and thesis documentation.",
-    note:
-      "My teammates contribute primarily to hardware integration, testing, and research and thesis documentation.",
-  },
-  {
-    number: "03 / System Access",
-    title: "System Access",
-    copy:
-      "Sea-It-Solved provides separate access for students, instructors, and administrators, allowing each user type to access tools relevant to their role. Authentication and role-based access control help keep those workflows appropriately separated.",
-    imageIndex: 1,
-  },
-  {
-    number: "04 / Instructor Workspace",
-    title: "Instructor Workspace",
-    copy:
-      "The instructor workspace provides tools for managing class sections, monitoring students, reviewing submitted work, and accessing lesson management features.",
-    imageIndex: 2,
-  },
-  {
-    number: "05 / Hardware Integration",
-    title: "Hardware Integration",
-    copy:
-      "The platform includes configurable classroom hardware settings for camera calibration, classroom lighting, and microphone input. The software interface for hardware configuration is implemented, while physical hardware integration remains under development.",
-    imageIndex: 3,
-  },
-  {
-    number: "06 / AI-Assisted Lesson Materials",
-    title: "AI-Assisted Lesson Materials",
-    copy:
-      "Captured and reviewed lesson content can be organized into structured learning materials. The instructor workspace includes an AI lesson assistant powered by Google Gemini 2.5 Flash that works with approved lesson context to generate supporting materials such as quizzes.",
-    imageIndex: 4,
-    className: "case-section--showcase",
-  },
-  {
-    number: "07 / Assessments",
-    title: "Assessments",
-    copy:
-      "Instructors can review and manage generated assessments based on approved lesson material, including questions, answer choices, correct answers, and explanations.",
-    imageIndex: 5,
-  },
-];
+function DetailGrid({ groups, label }) {
+  return (
+    <div className="architecture-grid" aria-label={label}>
+      {groups.map((group) => (
+        <section className="architecture-group" key={group.label}>
+          <h3>{group.label}</h3>
+          <p>{group.items.join(" · ")}</p>
+        </section>
+      ))}
+    </div>
+  );
+}
 
 export default function SeaItSolved() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -97,7 +54,6 @@ export default function SeaItSolved() {
     };
   }, [lightboxIndex]);
 
-  const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
   const previousImage = () =>
     setLightboxIndex((current) =>
@@ -117,7 +73,7 @@ export default function SeaItSolved() {
           <Link to="/#work" className="back-link">
             ← Back to projects
           </Link>
-          <p className="case-header-label">Featured project</p>
+          <p className="case-header-label">Academic thesis · deployed software</p>
           <h1 className="case-title">{project.title}</h1>
           <p className="case-subtitle">{project.subtitle}</p>
           <p className="case-meta-line">
@@ -128,85 +84,195 @@ export default function SeaItSolved() {
               <li key={technology}>{technology}</li>
             ))}
           </ul>
-          {project.visitUrl ? (
+          <div className="case-header-actions" aria-label="Project links">
             <a
               className="case-visit-link"
               href={project.visitUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit Project ↗
+              LIVE SITE ↗
             </a>
-          ) : null}
+            <a
+              className="case-visit-link"
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GITHUB ↗
+            </a>
+          </div>
         </header>
 
-        {featureSections.map((section) => {
-          const image =
-            section.imageIndex === undefined
-              ? null
-              : project.images[section.imageIndex];
-          const demo = section.demo ? project.demo : null;
+        <section className="case-section case-section--hero container">
+          <p className="case-section-label">01 / Overview</p>
+          <div className="case-section-copy">
+            <h2>Overview</h2>
+            <p>{project.overview}</p>
+          </div>
+          <button
+            className="case-image-button"
+            type="button"
+            onClick={() => setLightboxIndex(0)}
+            aria-label={`View ${project.images[0].caption} at full size`}
+          >
+            <ThemeAwareImage
+              media={project.images[0].src}
+              className="case-image"
+              alt={project.images[0].alt}
+            />
+            <span className="case-image-caption">{project.images[0].caption}</span>
+          </button>
+        </section>
 
-          return (
-            <section
-              className={`case-section container ${section.className || ""} ${image || demo ? "" : "case-section--text"}`}
-              key={section.number}
-            >
-              <p className="case-section-label">{section.number}</p>
-              <div className="case-section-copy">
-                <h2>{section.title}</h2>
-                <p>{section.copy}</p>
-                {section.note ? <p className="case-section-note">{section.note}</p> : null}
-              </div>
-              {demo ? (
-                <ProjectDemoVideo demo={demo} autoPlayWhenVisible />
-              ) : image ? (
-                <button
-                  className="case-image-button"
-                  type="button"
-                  onClick={() => openLightbox(section.imageIndex)}
-                  aria-label={`View ${image.caption} at full size`}
-                >
-                  <ThemeAwareImage media={image.src} className="case-image" alt={image.alt} />
-                  <span className="case-image-caption">{image.caption}</span>
-                </button>
-              ) : null}
-            </section>
-          );
-        })}
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">02 / Problem</p>
+          <div className="case-section-copy">
+            <h2>Problem</h2>
+            <p>{project.problem}</p>
+          </div>
+        </section>
 
-        <section className="case-section case-architecture container">
-          <p className="case-section-label">08 / Technology &amp; Architecture</p>
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">03 / Solution</p>
+          <div className="case-section-copy">
+            <h2>Solution</h2>
+            <p>{project.solution}</p>
+          </div>
+        </section>
+
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">04 / My Role</p>
+          <div className="case-section-copy">
+            <h2>My Role</h2>
+            <p>{project.role}</p>
+            <p className="case-section-note">{project.roleNote}</p>
+          </div>
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">05 / Key Features</p>
+          <div className="case-section-copy">
+            <h2>Key Features</h2>
+            <p>
+              Role-based classroom workflows connect lesson management, capture,
+              instructor review, learning materials, and assessment in one system.
+            </p>
+          </div>
+          <DetailGrid groups={project.featureGroups} label="Sea-It-Solved key features" />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">06 / System Workflow</p>
+          <div className="case-section-copy">
+            <h2>System Workflow</h2>
+            <p>
+              Each stage keeps classroom evidence traceable while preserving
+              instructor review before students receive generated material.
+            </p>
+          </div>
+          <ol className="case-workflow" aria-label="Sea-It-Solved system workflow">
+            {project.workflow.map((step, index) => (
+              <li key={step}>
+                <span className="case-workflow__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">07 / Technology &amp; Architecture</p>
           <div className="case-section-copy">
             <h2>Technology &amp; Architecture</h2>
             <p>
-              The platform combines a React interface with an Express API,
-              PostgreSQL data, background processing, and supporting services.
+              The platform combines a React interface, Express API, PostgreSQL
+              data, media processing, and supporting services. Media currently
+              uses the local storage adapter; persistent Supabase media storage
+              remains planned.
             </p>
           </div>
-          <div className="architecture-grid">
-            {project.architecture.map((group) => (
-              <section className="architecture-group" key={group.label}>
-                <h3>{group.label}</h3>
-                <p>{group.items.join(" · ")}</p>
-              </section>
-            ))}
+          <DetailGrid
+            groups={project.architecture}
+            label="Sea-It-Solved technology and architecture"
+          />
+        </section>
+
+        <section className="case-section container">
+          <p className="case-section-label">08 / AI &amp; Security</p>
+          <div className="case-section-copy">
+            <h2>AI &amp; Security</h2>
+            <p>
+              AI-assisted generation remains subject to instructor review, while
+              layered application controls protect role-based workflows and
+              sensitive configuration.
+            </p>
+          </div>
+          <DetailGrid groups={project.aiAndSecurity} label="Sea-It-Solved AI and security" />
+        </section>
+
+        <section className="case-section case-gallery container">
+          <p className="case-section-label">09 / Screenshots</p>
+          <div className="case-section-copy">
+            <h2>Screenshots</h2>
+            <p>
+              Selected role-based, classroom, AI-assisted, and assessment
+              interfaces from the current software platform.
+            </p>
+          </div>
+          <div className="case-gallery-grid">
+            {project.images.slice(1).map((image, index) => {
+              const imageIndex = index + 1;
+              return (
+                <button
+                  className="case-gallery-item"
+                  type="button"
+                  key={image.caption}
+                  onClick={() => setLightboxIndex(imageIndex)}
+                  aria-label={`Open ${image.caption} at full size`}
+                >
+                  <ThemeAwareImage media={image.src} alt={image.alt} />
+                  <span>{image.caption}</span>
+                </button>
+              );
+            })}
           </div>
         </section>
 
         <section className="case-section case-status container">
-          <p className="case-section-label">09 / Project Status</p>
+          <p className="case-section-label">10 / Deployment</p>
+          <div className="case-section-copy">
+            <h2>Deployment</h2>
+            <p>
+              The web platform is deployed across managed frontend, backend,
+              database, AI, and email services.
+            </p>
+          </div>
+          <dl className="case-status-grid case-status-grid--deployment">
+            {project.deployment.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="case-section case-status container">
+          <p className="case-section-label">11 / Project Status</p>
           <div className="case-section-copy">
             <h2>Project Status</h2>
             <p>
-              The software platform is currently functional, while physical
-              classroom hardware integration remains under development.
+              The web software is functional and deployed. Full physical
+              classroom hardware integration is still being developed and tested.
             </p>
           </div>
           <dl className="case-status-grid">
             <div>
               <dt>Software Platform</dt>
-              <dd>Functional</dd>
+              <dd>Functional / Deployed</dd>
             </div>
             <div>
               <dt>Physical Hardware Integration</dt>
@@ -215,25 +281,18 @@ export default function SeaItSolved() {
           </dl>
         </section>
 
-        <section className="case-section case-gallery container">
-          <p className="case-section-label">10 / Gallery</p>
+        <section className="case-section case-section--text container">
+          <p className="case-section-label">12 / What I Learned</p>
           <div className="case-section-copy">
-            <h2>Gallery</h2>
-            <p>Selected interfaces from the current software platform.</p>
-          </div>
-          <div className="case-gallery-grid">
-            {project.images.map((image, index) => (
-              <button
-                className="case-gallery-item"
-                type="button"
-                key={image.caption}
-                onClick={() => openLightbox(index)}
-                aria-label={`Open ${image.caption} at full size`}
-              >
-                <ThemeAwareImage media={image.src} alt={image.alt} />
-                <span>{image.caption}</span>
-              </button>
-            ))}
+            <h2>What I Learned</h2>
+            <p>
+              Building Sea-It-Solved strengthened my experience with larger
+              role-based full-stack systems, API and database design,
+              authentication and authorization, AI integration, background
+              processing, system security, debugging, and integration. It also
+              taught me how to balance AI automation with instructor review and
+              coordinate software and hardware work within a thesis team.
+            </p>
           </div>
         </section>
       </main>
@@ -247,7 +306,7 @@ export default function SeaItSolved() {
           className="project-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label="Sea-It-Solved image viewer"
+          aria-label="Sea-It-Solved project image viewer"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeLightbox();
           }}

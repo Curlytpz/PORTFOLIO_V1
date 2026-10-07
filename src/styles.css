@@ -5501,3 +5501,73 @@ body {
     border-right: 0;
   }
 }
+/* SEA-IT-SOLVED case-study workflow. */
+.case-workflow {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.case-workflow li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: var(--space-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.case-workflow li:nth-child(2n) {
+  border-right: 0;
+}
+
+.case-workflow__number {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.case-workflow li:not(:last-child) > span:last-child::after {
+  content: "  →";
+  color: var(--text-faint);
+}
+
+.case-study-page > section.reveal-section > .case-workflow {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 580ms ease-out 120ms, transform 580ms ease-out 120ms;
+}
+
+.case-study-page > section.reveal-section.is-visible > .case-workflow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .case-workflow {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-4);
+  }
+
+  .case-workflow li {
+    border-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-page > section.reveal-section > .case-workflow,
+  .case-study-page > section.reveal-section.is-visible > .case-workflow {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

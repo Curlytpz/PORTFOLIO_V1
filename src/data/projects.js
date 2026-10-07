@@ -9,13 +9,15 @@ const projects = [
     subtitle: "Automated Lecture Capturing & Documentation System",
     year: "2026",
     status: [
-      "Software Functional",
+      "Live / Deployed",
       "Hardware Integration In Development",
     ],
     categories: ["AI", "Computer Vision", "Full-Stack Development"],
     description:
-      "Sea-It-Solved is an academic thesis project designed to capture mathematics lectures and transform lecture content into structured digital learning materials using computer vision, media processing, and artificial intelligence.",
+      "A role-based full-stack thesis system that captures mathematics lectures, supports instructor-reviewed lesson context, and produces structured learning materials and assessment workflows.",
     link: "/projects/sea-it-solved",
+    liveUrl: "https://sea-it-solved.vercel.app",
+    githubUrl: "https://github.com/Curlytpz/SEA-IT-SOLVED",
   },
   {
     id: "top-garage",
