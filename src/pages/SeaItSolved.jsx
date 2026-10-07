@@ -1,8 +1,78 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import CaseStudyFeatureSection from "../components/CaseStudyFeatureSection.jsx";
 import Footer from "../components/Footer.jsx";
+import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
 import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { seaItSolvedProject as project } from "../data/seaItSolved.js";
+
+const featureImages = project.images.slice(1);
+
+const featureSections = [
+  {
+    number: "02",
+    label: "Authentication / Access",
+    title: "Role-Based System Access",
+    description:
+      "Students, instructors, and administrators enter through dedicated role-based workflows, with authentication and backend authorization protecting the tools available to each user.",
+    imageIndex: 0,
+  },
+  {
+    number: "03",
+    label: "Instructor Workspace",
+    title: "Instructor Workspace",
+    description:
+      "Instructors can manage sections and lessons, review student activity, and move captured classroom content through the lesson and assessment workflow.",
+    imageIndex: 1,
+  },
+  {
+    number: "04",
+    label: "Hardware Settings",
+    title: "Hardware Settings & Calibration",
+    description:
+      "The hardware workspace provides camera calibration, classroom lighting, and microphone controls that prepare the system for lecture and whiteboard capture.",
+    imageIndex: 2,
+  },
+  {
+    number: "05",
+    label: "AI-Assisted Lesson Materials",
+    title: "AI-Assisted Lesson Materials",
+    description:
+      "Approved lesson context can be organized into structured learning materials and quiz drafts with Gemini assistance while the instructor remains responsible for review and publication.",
+    imageIndex: 3,
+  },
+  {
+    number: "06",
+    label: "Assessments",
+    title: "Assessment Analytics",
+    description:
+      "Assessment results help instructors review student performance, question-level response patterns, and areas that may need additional teaching attention.",
+    imageIndex: 4,
+  },
+];
+
+const technicalOverview = [
+  {
+    label: "Application",
+    items: ["React/Vite frontend", "Node.js/Express API", "REST endpoints"],
+  },
+  {
+    label: "Data & Processing",
+    items: ["PostgreSQL/Supabase", "FFmpeg/FFprobe", "Background workers where implemented"],
+  },
+  {
+    label: "AI",
+    items: ["Gemini 2.5 Flash", "Instructor-reviewed context and output"],
+  },
+  {
+    label: "Security",
+    items: ["JWT", "Role-based authorization", "Protected routes", "Verification and rate limiting"],
+  },
+  {
+    label: "Deployment",
+    items: ["Vercel frontend", "Render backend", "Gmail API verification"],
+  },
+];
 
 function DetailGrid({ groups, label }) {
   return (
@@ -36,12 +106,12 @@ export default function SeaItSolved() {
         setLightboxIndex((current) =>
           current === null
             ? null
-            : (current - 1 + project.images.length) % project.images.length
+            : (current - 1 + featureImages.length) % featureImages.length
         );
       }
       if (event.key === "ArrowRight") {
         setLightboxIndex((current) =>
-          current === null ? null : (current + 1) % project.images.length
+          current === null ? null : (current + 1) % featureImages.length
         );
       }
     };
@@ -59,11 +129,11 @@ export default function SeaItSolved() {
     setLightboxIndex((current) =>
       current === null
         ? null
-        : (current - 1 + project.images.length) % project.images.length
+        : (current - 1 + featureImages.length) % featureImages.length
     );
   const nextImage = () =>
     setLightboxIndex((current) =>
-      current === null ? null : (current + 1) % project.images.length
+      current === null ? null : (current + 1) % featureImages.length
     );
 
   return (
@@ -110,169 +180,66 @@ export default function SeaItSolved() {
             <h2>Overview</h2>
             <p>{project.overview}</p>
           </div>
-          <button
-            className="case-image-button"
-            type="button"
-            onClick={() => setLightboxIndex(0)}
-            aria-label={`View ${project.images[0].caption} at full size`}
-          >
-            <ThemeAwareImage
-              media={project.images[0].src}
-              className="case-image"
-              alt={project.images[0].alt}
-            />
-            <span className="case-image-caption">{project.images[0].caption}</span>
-          </button>
+          <ProjectDemoVideo demo={project.demo} autoPlayWhenVisible />
         </section>
+
+        {featureSections.map((section) => (
+          <CaseStudyFeatureSection
+            key={section.number}
+            number={section.number}
+            label={section.label}
+            title={section.title}
+            description={section.description}
+            image={featureImages[section.imageIndex]}
+            onOpen={() => setLightboxIndex(section.imageIndex)}
+          />
+        ))}
 
         <section className="case-section case-section--text container">
-          <p className="case-section-label">02 / Problem</p>
+          <p className="case-section-label">07 / Problem &amp; Solution</p>
           <div className="case-section-copy">
-            <h2>Problem</h2>
-            <p>{project.problem}</p>
-          </div>
-        </section>
-
-        <section className="case-section case-section--text container">
-          <p className="case-section-label">03 / Solution</p>
-          <div className="case-section-copy">
-            <h2>Solution</h2>
-            <p>{project.solution}</p>
-          </div>
-        </section>
-
-        <section className="case-section case-section--text container">
-          <p className="case-section-label">04 / My Role</p>
-          <div className="case-section-copy">
-            <h2>My Role</h2>
-            <p>{project.role}</p>
-            <p className="case-section-note">{project.roleNote}</p>
-          </div>
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">05 / Key Features</p>
-          <div className="case-section-copy">
-            <h2>Key Features</h2>
+            <h2>Problem &amp; Solution</h2>
             <p>
-              Role-based classroom workflows connect lesson management, capture,
-              instructor review, learning materials, and assessment in one system.
+              <strong>Problem.</strong> Important whiteboard content can disappear
+              after class, while students may miss multi-step mathematics and
+              instructors spend additional time preparing notes and assessments.
+            </p>
+            <p>
+              <strong>Solution.</strong> Sea-It-Solved connects classroom capture,
+              instructor-reviewed lesson context, AI-assisted materials,
+              assessments, and student access in one role-based workflow.
             </p>
           </div>
-          <DetailGrid groups={project.featureGroups} label="Sea-It-Solved key features" />
         </section>
 
         <section className="case-section container">
-          <p className="case-section-label">06 / System Workflow</p>
+          <p className="case-section-label">08 / Technical Overview</p>
           <div className="case-section-copy">
-            <h2>System Workflow</h2>
+            <h2>Technical Overview</h2>
             <p>
-              Each stage keeps classroom evidence traceable while preserving
-              instructor review before students receive generated material.
-            </p>
-          </div>
-          <ol className="case-workflow" aria-label="Sea-It-Solved system workflow">
-            {project.workflow.map((step, index) => (
-              <li key={step}>
-                <span className="case-workflow__number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">07 / Technology &amp; Architecture</p>
-          <div className="case-section-copy">
-            <h2>Technology &amp; Architecture</h2>
-            <p>
-              The platform combines a React interface, Express API, PostgreSQL
-              data, media processing, and supporting services. Media currently
-              uses the local storage adapter; persistent Supabase media storage
-              remains planned.
+              A compact full-stack architecture supports classroom workflows,
+              media processing, reviewed AI assistance, and protected user roles.
             </p>
           </div>
           <DetailGrid
-            groups={project.architecture}
-            label="Sea-It-Solved technology and architecture"
+            groups={technicalOverview}
+            label="Sea-It-Solved technical overview"
           />
         </section>
 
-        <section className="case-section container">
-          <p className="case-section-label">08 / AI &amp; Security</p>
-          <div className="case-section-copy">
-            <h2>AI &amp; Security</h2>
-            <p>
-              AI-assisted generation remains subject to instructor review, while
-              layered application controls protect role-based workflows and
-              sensitive configuration.
-            </p>
-          </div>
-          <DetailGrid groups={project.aiAndSecurity} label="Sea-It-Solved AI and security" />
-        </section>
-
-        <section className="case-section case-gallery container">
-          <p className="case-section-label">09 / Screenshots</p>
-          <div className="case-section-copy">
-            <h2>Screenshots</h2>
-            <p>
-              Selected role-based, classroom, AI-assisted, and assessment
-              interfaces from the current software platform.
-            </p>
-          </div>
-          <div className="case-gallery-grid">
-            {project.images.slice(1).map((image, index) => {
-              const imageIndex = index + 1;
-              return (
-                <button
-                  className="case-gallery-item"
-                  type="button"
-                  key={image.caption}
-                  onClick={() => setLightboxIndex(imageIndex)}
-                  aria-label={`Open ${image.caption} at full size`}
-                >
-                  <ThemeAwareImage media={image.src} alt={image.alt} />
-                  <span>{image.caption}</span>
-                </button>
-              );
-            })}
-          </div>
-        </section>
-
         <section className="case-section case-status container">
-          <p className="case-section-label">10 / Deployment</p>
-          <div className="case-section-copy">
-            <h2>Deployment</h2>
-            <p>
-              The web platform is deployed across managed frontend, backend,
-              database, AI, and email services.
-            </p>
-          </div>
-          <dl className="case-status-grid case-status-grid--deployment">
-            {project.deployment.map((item) => (
-              <div key={item.label}>
-                <dt>{item.label}</dt>
-                <dd>{item.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        <section className="case-section case-status container">
-          <p className="case-section-label">11 / Project Status</p>
+          <p className="case-section-label">09 / Project Status</p>
           <div className="case-section-copy">
             <h2>Project Status</h2>
             <p>
-              The web software is functional and deployed. Full physical
-              classroom hardware integration is still being developed and tested.
+              The software workflow is functional while physical classroom
+              hardware integration remains under active development.
             </p>
           </div>
           <dl className="case-status-grid">
             <div>
               <dt>Software Platform</dt>
-              <dd>Functional / Deployed</dd>
+              <dd>Functional</dd>
             </div>
             <div>
               <dt>Physical Hardware Integration</dt>
@@ -282,16 +249,14 @@ export default function SeaItSolved() {
         </section>
 
         <section className="case-section case-section--text container">
-          <p className="case-section-label">12 / What I Learned</p>
+          <p className="case-section-label">10 / What I Learned</p>
           <div className="case-section-copy">
             <h2>What I Learned</h2>
             <p>
-              Building Sea-It-Solved strengthened my experience with larger
-              role-based full-stack systems, API and database design,
-              authentication and authorization, AI integration, background
-              processing, system security, debugging, and integration. It also
-              taught me how to balance AI automation with instructor review and
-              coordinate software and hardware work within a thesis team.
+              Building Sea-It-Solved taught me how to connect a larger role-based
+              frontend, API, database, media pipeline, and AI workflow. I also
+              learned to keep instructors in control while coordinating software
+              and hardware integration with a thesis team.
             </p>
           </div>
         </section>
@@ -330,10 +295,10 @@ export default function SeaItSolved() {
           </button>
           <figure className="project-lightbox__figure">
             <ThemeAwareImage
-              media={project.images[lightboxIndex].src}
-              alt={project.images[lightboxIndex].alt}
+              media={featureImages[lightboxIndex].src}
+              alt={featureImages[lightboxIndex].alt}
             />
-            <figcaption>{project.images[lightboxIndex].caption}</figcaption>
+            <figcaption>{featureImages[lightboxIndex].caption}</figcaption>
           </figure>
           <button
             className="project-lightbox__control project-lightbox__control--next"

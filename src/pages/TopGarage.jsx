@@ -1,10 +1,64 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import CaseStudyFeatureSection from "../components/CaseStudyFeatureSection.jsx";
 import Footer from "../components/Footer.jsx";
 import ProjectDemoVideo from "../components/ProjectDemoVideo.jsx";
 import ThemeAwareImage from "../components/ThemeAwareImage.jsx";
 import { topGarageProject as project } from "../data/topGarage.js";
 
+const featureSections = [
+  {
+    number: "02",
+    label: "Services",
+    title: "Services",
+    description:
+      "The services experience presents the business's confirmed automotive upholstery options, including seat covers, door sidings, ceiling work, and installation support.",
+    imageIndex: 0,
+  },
+  {
+    number: "03",
+    label: "About",
+    title: "About the Business",
+    description:
+      "The About page introduces TOP-G's custom approach, service area, operating information, warranty details, and customer-focused business identity.",
+    imageIndex: 1,
+  },
+  {
+    number: "04",
+    label: "Contact",
+    title: "Contact & Location",
+    description:
+      "Customers can find the business phone numbers, email address, operating hours, and mapped shop location before starting a quotation or visit.",
+    imageIndex: 2,
+  },
+  {
+    number: "05",
+    label: "Materials",
+    title: "Leather Materials",
+    description:
+      "Dedicated material presentation helps customers compare confirmed leather options, appearance, and warranty information before discussing their vehicle build.",
+    imageIndex: 3,
+  },
+];
+
+const technicalOverview = [
+  {
+    label: "Application",
+    items: ["React/Vite frontend", "Express REST API", "Prisma ORM"],
+  },
+  {
+    label: "Data & Media",
+    items: ["Supabase PostgreSQL", "Cloudinary project images"],
+  },
+  {
+    label: "Production Architecture",
+    items: ["Vercel frontend → Render API → Prisma → Supabase PostgreSQL"],
+  },
+  {
+    label: "Security",
+    items: ["Protected admin authentication", "Cloudflare Turnstile", "Server-side validation"],
+  },
+];
 function DetailGrid({ groups, label }) {
   return (
     <div className="architecture-grid" aria-label={label}>
@@ -110,139 +164,77 @@ export default function TopGarage() {
           <div className="case-section-copy">
             <h2>Overview</h2>
             <p>{project.overview}</p>
-            <p className="case-section-note">{project.role}</p>
           </div>
           <ProjectDemoVideo demo={project.demo} autoPlayWhenVisible />
         </section>
 
-        <section className="case-section case-section--text container">
-          <p className="case-section-label">02 / Problem</p>
-          <div className="case-section-copy">
-            <h2>Problem</h2>
-            <p>{project.problem}</p>
-          </div>
-        </section>
+        {featureSections.map((section) => (
+          <CaseStudyFeatureSection
+            key={section.number}
+            number={section.number}
+            label={section.label}
+            title={section.title}
+            description={section.description}
+            image={project.images[section.imageIndex]}
+            onOpen={() => setLightboxIndex(section.imageIndex)}
+          />
+        ))}
 
         <section className="case-section case-section--text container">
-          <p className="case-section-label">03 / Solution</p>
+          <p className="case-section-label">06 / Problem &amp; Solution</p>
           <div className="case-section-copy">
-            <h2>Solution</h2>
-            <p>{project.solution}</p>
+            <h2>Problem &amp; Solution</h2>
+            <p>
+              <strong>Problem.</strong> TOP-G needed one professional place to
+              present its upholstery work, collect detailed quotation requests,
+              and manage customer inquiries and published projects.
+            </p>
+            <p>
+              <strong>Solution.</strong> The system combines a responsive public
+              website with a protected dashboard for quotations, project media,
+              publishing, and customer follow-up.
+            </p>
           </div>
         </section>
 
         <section className="case-section container">
-          <p className="case-section-label">04 / Key Features</p>
+          <p className="case-section-label">07 / Technical Overview</p>
           <div className="case-section-copy">
-            <h2>Key Features</h2>
+            <h2>Technical Overview</h2>
             <p>
-              Customer-facing and administrative workflows are integrated into
-              one responsive system.
+              The frontend, API, database, media service, and security controls
+              form one compact full-stack business system.
             </p>
           </div>
-          <DetailGrid groups={project.featureGroups} label="TOP-G key features" />
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">05 / Tech Stack</p>
-          <div className="case-section-copy">
-            <h2>Tech Stack</h2>
-            <p>
-              The production stack supports the public website, API, database,
-              media management, security, and deployment workflow.
-            </p>
-          </div>
-          <DetailGrid groups={project.techGroups} label="TOP-G technology stack" />
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">06 / System Architecture</p>
-          <div className="case-section-copy">
-            <h2>System Architecture</h2>
-            <p>
-              The React client communicates with the Express API, which uses
-              Prisma to access Supabase PostgreSQL. Cloudinary stores project
-              imagery separately.
-            </p>
-          </div>
-          <DetailGrid groups={project.architecture} label="TOP-G system architecture" />
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">07 / Security</p>
-          <div className="case-section-copy">
-            <h2>Security</h2>
-            <p>
-              Public submissions and protected management workflows are handled
-              through layered validation and access controls.
-            </p>
-          </div>
-          <DetailGrid groups={project.security} label="TOP-G security controls" />
-        </section>
-
-        <section className="case-section container">
-          <p className="case-section-label">08 / Admin Dashboard</p>
-          <div className="case-section-copy">
-            <h2>Admin Dashboard</h2>
-            <p>
-              The business owner can manage customer quotations and control the
-              projects displayed on the public website.
-            </p>
-          </div>
-          <DetailGrid groups={project.adminCapabilities} label="TOP-G admin capabilities" />
-        </section>
-
-        <section className="case-section case-gallery container">
-          <p className="case-section-label">09 / Screenshots</p>
-          <div className="case-section-copy">
-            <h2>Screenshots</h2>
-            <p>Selected public interfaces from the deployed TOP-G website.</p>
-          </div>
-          <div className="case-gallery-grid">
-            {project.images.map((image, index) => (
-              <button
-                className="case-gallery-item"
-                type="button"
-                key={image.caption}
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`Open ${image.caption} at full size`}
-              >
-                <ThemeAwareImage media={image.src} alt={image.alt} />
-                <span>{image.caption}</span>
-              </button>
-            ))}
-          </div>
+          <DetailGrid groups={technicalOverview} label="TOP-G technical overview" />
         </section>
 
         <section className="case-section case-status container">
-          <p className="case-section-label">10 / Deployment</p>
+          <p className="case-section-label">08 / Project Status</p>
           <div className="case-section-copy">
-            <h2>Deployment</h2>
+            <h2>Project Status</h2>
             <p>
-              The full production system is deployed across managed frontend,
-              API, database, and media services.
+              Core customer-facing pages and management features are implemented
+              while the website continues to be refined for the business.
             </p>
           </div>
-          <dl className="case-status-grid case-status-grid--deployment">
-            {project.deployment.map((item) => (
-              <div key={item.label}>
-                <dt>{item.label}</dt>
-                <dd>{item.value}</dd>
-              </div>
-            ))}
+          <dl className="case-status-grid case-status-grid--single">
+            <div>
+              <dt>Website Development</dt>
+              <dd>In Development</dd>
+            </div>
           </dl>
         </section>
 
         <section className="case-section case-section--text container">
-          <p className="case-section-label">11 / What I Learned</p>
+          <p className="case-section-label">09 / What I Learned</p>
           <div className="case-section-copy">
             <h2>What I Learned</h2>
             <p>
-              Building TOP-G strengthened my ability to take a real business
-              system from planning through production. I gained deeper practical
-              experience with full-stack architecture, database and media
-              workflows, protected admin tools, security, responsive UI design,
-              optimization, and deployment across multiple services.
+              Building TOP-G taught me how to translate a real business workflow
+              into a complete frontend, API, database, media, and admin system. I
+              also gained practical experience securing and deploying services
+              that must work together reliably.
             </p>
           </div>
         </section>
