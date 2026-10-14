@@ -31,7 +31,12 @@ export function useIsDarkPortfolioTheme() {
   return isDarkTheme;
 }
 
-export default function ThemeAwareImage({ media, alt, className = "" }) {
+export default function ThemeAwareImage({
+  media,
+  alt,
+  className = "",
+  loading = "eager",
+}) {
   const isDarkTheme = useIsDarkPortfolioTheme();
   const lightSrc = resolveThemeMedia(media, false);
   const darkSrc = resolveThemeMedia(media, true);
@@ -45,12 +50,14 @@ export default function ThemeAwareImage({ media, alt, className = "" }) {
         className={`theme-media__image theme-media__image--light ${className}`.trim()}
         src={lightSrc}
         alt={alt}
+        loading={loading}
       />
       {hasDarkVariant ? (
         <img
           className={`theme-media__image theme-media__image--dark ${className}`.trim()}
           src={darkSrc}
           alt=""
+          loading={loading}
           aria-hidden="true"
         />
       ) : null}

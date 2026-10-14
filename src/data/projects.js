@@ -56,6 +56,27 @@ const projects = [
       "A responsive personal portfolio built to showcase my projects, technical experience, and development work. It includes an interactive music player, portfolio chatbot, Stack mini-game, theme controls, custom loading animations, responsive layouts, and interface animations.",
     link: "",
   },
+  {
+    id: "trace",
+    number: "04",
+    title: "TRACE",
+    subtitle: "Agentic RAG Investigation Workspace",
+    year: "2026",
+    status: ["In Development"],
+    categories: [
+      "React",
+      "TypeScript",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Gemini API",
+      "RAG",
+    ],
+    description:
+      "An AI-powered investigation workspace that helps developers organize technical problems, manage evidence, and retrieve relevant knowledge using keyword, semantic, and hybrid search.",
+    link: "/projects/trace",
+    githubUrl: "https://github.com/Curlytpz/TRACE",
+  },
 ];
 
 export default projects;

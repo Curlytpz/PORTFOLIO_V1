@@ -172,7 +172,7 @@ export default function ProjectDemoVideo({ demo, autoPlayWhenVisible = false }) 
     loop: true,
     muted: true,
     playsInline: true,
-    preload: hasDarkVideo ? "auto" : "metadata",
+    preload: demo.preload ?? (hasDarkVideo ? "auto" : "metadata"),
     poster: activePoster,
     "aria-label": demo.title,
     "aria-hidden": variant !== activeVariant,
