@@ -77,6 +77,18 @@ const projects = [
     link: "/projects/trace",
     githubUrl: "https://github.com/Curlytpz/TRACE",
   },
+  {
+    id: "recall",
+    number: "05",
+    title: "Recall",
+    subtitle: "Private Family History & Memory Workspace",
+    year: "2026",
+    status: ["In Development"],
+    categories: ["React", "TypeScript", "Express.js", "PostgreSQL", "Prisma ORM"],
+    description:
+      "A private family history workspace for preserving people, relationship records, stories, photos, invitations, and source-grounded family discovery.",
+    link: "/projects/recall",
+  },
 ];
 
 export default projects;

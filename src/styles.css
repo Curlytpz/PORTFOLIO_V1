@@ -3227,6 +3227,116 @@ html:not(.intro-complete) .intro-photo-frame {
   filter: drop-shadow(0 0 0.35px currentColor);
 }
 
+/* Icon-only technology controls with names available on hover, focus, and tap. */
+.tech-pills {
+  gap: 0.9rem;
+}
+
+.tech-pills li {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.tech-tooltip-trigger {
+  position: relative;
+  display: grid;
+  width: 3.3rem;
+  height: 3.3rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease, background-color 260ms ease, color 260ms ease;
+}
+
+.tech-pills .tech-tooltip-trigger .tech-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tech-pills .tech-tooltip-trigger .tech-icon--canva {
+  width: 1.62rem;
+  height: 1.1rem;
+  flex-basis: auto;
+}
+
+.tech-tooltip-trigger:hover,
+.tech-tooltip-trigger:focus-visible,
+.tech-tooltip-trigger[data-open] {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+  color: var(--link-hover);
+  transform: translateY(-2px);
+}
+
+.tech-tooltip-trigger:hover .tech-icon,
+.tech-tooltip-trigger:focus-visible .tech-icon,
+.tech-tooltip-trigger[data-open] .tech-icon {
+  transform: scale(1.08);
+}
+
+.tech-tooltip-trigger:focus-visible {
+  outline: 2px solid var(--link-hover);
+  outline-offset: 3px;
+}
+
+.tech-tooltip {
+  position: absolute;
+  z-index: 5;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  width: max-content;
+  max-width: min(12rem, calc(100vw - 2rem));
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.45rem;
+  background: var(--bg);
+  box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--text) 16%, transparent);
+  color: var(--text);
+  font-size: 0.74rem;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.25rem);
+  transition: opacity 180ms ease, transform 180ms ease;
+  visibility: hidden;
+}
+
+.tech-tooltip-trigger:hover .tech-tooltip,
+.tech-tooltip-trigger:focus-visible .tech-tooltip,
+.tech-tooltip-trigger[data-open] .tech-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  visibility: visible;
+}
+
+@media (max-width: 520px) {
+  .tech-pills {
+    gap: 0.65rem;
+  }
+
+  .tech-tooltip-trigger {
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-tooltip-trigger,
+  .tech-pills .tech-tooltip-trigger .tech-icon,
+  .tech-tooltip {
+    transition: none;
+  }
+}
+
 .portfolio-chat__typing {
   margin: 0;
   color: var(--text-faint);
@@ -5397,40 +5507,40 @@ body {
   opacity: 0;
 }
 
-.theme-media.is-dark .theme-media__image--light {
+.theme-media.has-dark-variant.is-dark .theme-media__image--light {
   opacity: 0;
 }
 
-.theme-media.is-dark .theme-media__image--dark {
+.theme-media.has-dark-variant.is-dark .theme-media__image--dark {
   opacity: 1;
 }
 
-.case-image-button:hover .theme-media.is-dark .theme-media__image--light,
-.case-image-button:focus-visible .theme-media.is-dark .theme-media__image--light,
-.case-gallery-item:hover .theme-media.is-dark .theme-media__image--light,
-.case-gallery-item:focus-visible .theme-media.is-dark .theme-media__image--light {
+.case-image-button:hover .theme-media.has-dark-variant.is-dark .theme-media__image--light,
+.case-image-button:focus-visible .theme-media.has-dark-variant.is-dark .theme-media__image--light,
+.case-gallery-item:hover .theme-media.has-dark-variant.is-dark .theme-media__image--light,
+.case-gallery-item:focus-visible .theme-media.has-dark-variant.is-dark .theme-media__image--light {
   opacity: 0;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   /* Hover previews the paired theme capture without changing the page theme. */
-  .case-image-button:hover .theme-media .theme-media__image--light,
-  .case-image-button:focus-visible .theme-media .theme-media__image--light {
+  .case-image-button:hover .theme-media.has-dark-variant .theme-media__image--light,
+  .case-image-button:focus-visible .theme-media.has-dark-variant .theme-media__image--light {
     opacity: 0;
   }
 
-  .case-image-button:hover .theme-media .theme-media__image--dark,
-  .case-image-button:focus-visible .theme-media .theme-media__image--dark {
+  .case-image-button:hover .theme-media.has-dark-variant .theme-media__image--dark,
+  .case-image-button:focus-visible .theme-media.has-dark-variant .theme-media__image--dark {
     opacity: 1;
   }
 
-  .case-image-button:hover .theme-media.is-dark .theme-media__image--light,
-  .case-image-button:focus-visible .theme-media.is-dark .theme-media__image--light {
+  .case-image-button:hover .theme-media.has-dark-variant.is-dark .theme-media__image--light,
+  .case-image-button:focus-visible .theme-media.has-dark-variant.is-dark .theme-media__image--light {
     opacity: 1;
   }
 
-  .case-image-button:hover .theme-media.is-dark .theme-media__image--dark,
-  .case-image-button:focus-visible .theme-media.is-dark .theme-media__image--dark {
+  .case-image-button:hover .theme-media.has-dark-variant.is-dark .theme-media__image--dark,
+  .case-image-button:focus-visible .theme-media.has-dark-variant.is-dark .theme-media__image--dark {
     opacity: 0;
   }
 }
@@ -5545,21 +5655,23 @@ body {
   grid-template-columns: 1fr;
 }
 
-.trace-feature-media-stack {
+.trace-feature-media-stack,
+.recall-feature-media-stack {
   grid-column: 1 / -1;
   display: grid;
   gap: var(--space-4);
   margin-top: var(--space-5);
 }
 
-.case-study-page > .case-section .trace-feature-media-stack .case-image-button {
+.case-study-page > .case-section :is(.trace-feature-media-stack, .recall-feature-media-stack) .case-image-button {
   grid-column: 1 / -1;
   grid-row: auto;
   margin-top: 0;
 }
 
 @media (max-width: 720px) {
-  .trace-feature-media-stack {
+  .trace-feature-media-stack,
+  .recall-feature-media-stack {
     margin-top: var(--space-4);
   }
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   SiCss,
   SiExpress,
@@ -75,7 +76,54 @@ function TechIcon({ item }) {
   return <Icon className={iconClass} aria-hidden="true" focusable="false" />;
 }
 
+function TechPill({ item, isOpen, onToggle }) {
+  const tooltipId = `tech-tooltip-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+  return (
+    <li>
+      <button
+        className="tech-tooltip-trigger"
+        type="button"
+        aria-label={item.label}
+        aria-pressed={isOpen}
+        onClick={onToggle}
+        data-open={isOpen || undefined}
+      >
+        <TechIcon item={item} />
+        <span className="tech-tooltip" id={tooltipId} role="tooltip">
+          {item.label}
+        </span>
+      </button>
+    </li>
+  );
+}
+
 export default function TechStack() {
+  const [openLabel, setOpenLabel] = useState(null);
+
+  useEffect(() => {
+    const closeTooltipOutside = (event) => {
+      if (!event.target.closest(".tech-tooltip-trigger")) setOpenLabel(null);
+    };
+    const closeTooltipWithEscape = (event) => {
+      if (event.key === "Escape") setOpenLabel(null);
+    };
+
+    document.addEventListener("pointerdown", closeTooltipOutside);
+    document.addEventListener("keydown", closeTooltipWithEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeTooltipOutside);
+      document.removeEventListener("keydown", closeTooltipWithEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!openLabel) return undefined;
+
+    const timeoutId = window.setTimeout(() => setOpenLabel(null), 1000);
+    return () => window.clearTimeout(timeoutId);
+  }, [openLabel]);
+
   return (
     <section className="tech-stack container">
       <h2 className="section-label">04 — Tech Stack</h2>
@@ -85,10 +133,16 @@ export default function TechStack() {
           <h3 className="tech-group-label">{group.label}</h3>
           <ul className="tech-pills">
             {group.items.map((item) => (
-              <li key={item.label}>
-                <TechIcon item={item} />
-                <span>{item.label}</span>
-              </li>
+              <TechPill
+                key={item.label}
+                item={item}
+                isOpen={openLabel === item.label}
+                onToggle={() =>
+                  setOpenLabel((current) =>
+                    current === item.label ? null : item.label
+                  )
+                }
+              />
             ))}
           </ul>
         </div>

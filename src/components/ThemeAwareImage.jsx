@@ -44,7 +44,13 @@ export default function ThemeAwareImage({
 
   return (
     <span
-      className={`theme-media ${hasDarkVariant && isDarkTheme ? "is-dark" : ""}`}
+      className={[
+        "theme-media",
+        hasDarkVariant && "has-dark-variant",
+        hasDarkVariant && isDarkTheme && "is-dark",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <img
         className={`theme-media__image theme-media__image--light ${className}`.trim()}

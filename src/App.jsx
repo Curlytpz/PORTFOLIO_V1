@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import SeaItSolved from "./pages/SeaItSolved.jsx";
 import TopGarage from "./pages/TopGarage.jsx";
 import Trace from "./pages/Trace.jsx";
+import Recall from "./pages/Recall.jsx";
 import Games from "./pages/Games.jsx";
 import Experience from "./pages/Experience.jsx";
 import IntroLoader from "./components/IntroLoader.jsx";
@@ -16,6 +17,7 @@ function Portfolio() {
         <Route path="/projects/sea-it-solved" element={<SeaItSolved />} />
         <Route path="/projects/top-garage" element={<TopGarage />} />
         <Route path="/projects/trace" element={<Trace />} />
+        <Route path="/projects/recall" element={<Recall />} />
         <Route path="/playground" element={<Games />} />
         <Route path="/games" element={<Games />} />
         <Route path="/experience" element={<Experience />} />
