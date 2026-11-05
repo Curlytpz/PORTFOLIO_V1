@@ -23,9 +23,10 @@ import canvaLogo from "../assets/canva.svg";
 
 function CanvaIcon({ className, ...props }) {
   return (
-    <span
+    <img
       className={`${className} tech-icon--canva`}
-      style={{ "--tech-icon-mask": `url(${canvaLogo})` }}
+      src={canvaLogo}
+      alt=""
       {...props}
     />
   );

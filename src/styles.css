@@ -3266,6 +3266,11 @@ html:not(.intro-complete) .intro-photo-frame {
   width: 1.62rem;
   height: 1.1rem;
   flex-basis: auto;
+  background: transparent;
+  -webkit-mask: none;
+  mask: none;
+  filter: grayscale(1) contrast(1.35);
+  object-fit: contain;
 }
 
 .tech-tooltip-trigger:hover,
