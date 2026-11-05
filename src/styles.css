@@ -3273,6 +3273,12 @@ html:not(.intro-complete) .intro-photo-frame {
   object-fit: contain;
 }
 
+.tech-pills li:hover .tech-tooltip-trigger .tech-icon--canva,
+.tech-pills .tech-tooltip-trigger:focus-visible .tech-icon--canva,
+.tech-pills .tech-tooltip-trigger[data-open] .tech-icon--canva {
+  filter: grayscale(1) contrast(1.35);
+}
+
 .tech-tooltip-trigger:hover,
 .tech-tooltip-trigger:focus-visible,
 .tech-tooltip-trigger[data-open] {
