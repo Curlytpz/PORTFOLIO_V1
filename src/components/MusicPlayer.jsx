@@ -16,7 +16,9 @@ export default function MusicPlayer({ songs = defaultPlaylist }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isHidden, setIsHidden] = useState(false);
+  // Keep the player collapsed on first render so page load and search visits
+  // never reveal it without an explicit user action.
+  const [isHidden, setIsHidden] = useState(true);
 
   const hideMusic = () => {
     setIsHidden(true);
